@@ -15,6 +15,3 @@ export { default as TestPageImage } from "./TestPageImage.svg";
 export { default as CrossSectorInspectionsImage } from "./CrossSectorInspectionsImage.svg";
 export { default as CareQualityCommissionCqcOverviewImage } from "./CareQualityCommissionCqcOverviewImage.svg";
 export { default as WithdrawalOfApplicationImage } from "./WithdrawalOfApplicationImage.svg";
-
-
-

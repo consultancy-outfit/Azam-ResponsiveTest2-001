@@ -1,9 +1,16 @@
 "use client";
 import React from "react";
-import { Box, CardContent, Container, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CardContent,
+  Container,
+  Stack,
+  Typography,
+  Chip,
+} from "@mui/material";
 import { MultiBackIcon } from "@/assets/common-assets";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import Image from "next/image";
 import { Grid } from "@mui/material";
 import { Card } from "@mui/material";
@@ -13,6 +20,7 @@ interface CardItem {
   title: string;
   image: string;
   route?: string;
+  chipNumber?: number;
 }
 
 interface CommonCardPageProps {
@@ -22,6 +30,14 @@ interface CommonCardPageProps {
   fontSize?: string;
 }
 
+// Function to generate random light colors
+const generateLightColor = () => {
+  const hue = Math.floor(Math.random() * 360);
+  const saturation = Math.floor(Math.random() * 30) + 20; // 20-50%
+  const lightness = Math.floor(Math.random() * 20) + 85; // 85-105%
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+};
+
 const CommonCardPage: React.FC<CommonCardPageProps> = ({
   backRoute = "/",
   pageTitle,
@@ -29,15 +45,24 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
   fontSize = "22px",
 }) => {
   const router = useRouter();
+
+  // Generate stable random colors for each card
+  const cardColors = useMemo(() => {
+    return cards.map(() => generateLightColor());
+  }, [cards]);
+
   const onBackIconClick = useCallback(() => {
     router.push(backRoute);
   }, [router, backRoute]);
 
-  const onCardClick = useCallback((route?: string) => {
-    if (route) {
-      router.push(route);
-    }
-  }, [router]);
+  const onCardClick = useCallback(
+    (route?: string) => {
+      if (route) {
+        router.push(route);
+      }
+    },
+    [router]
+  );
 
   return (
     <Box p={{ md: 3, xs: 2 }}>
@@ -115,6 +140,8 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                   alignItems: "center",
                   transition: "transform 0.2s ease-in-out",
                   cursor: card.route ? "pointer" : "default",
+                  backgroundColor: cardColors[index],
+                  position: "relative",
                   "&:hover": {
                     transform: card.route ? "scale(1.02)" : "none",
                     boxShadow: card.route
@@ -123,6 +150,24 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                   },
                 }}
               >
+                <Chip
+                  label={card.chipNumber !== undefined ? card.chipNumber : ""}
+                  sx={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                    backgroundColor: "rgba(2, 70, 188, 0.9)",
+                    color: "white",
+                    fontWeight: 600,
+                    fontSize: "0.875rem",
+                    height: "32px",
+                    visibility:
+                      card.chipNumber !== undefined ? "visible" : "hidden",
+                    "& .MuiChip-label": {
+                      px: 1,
+                    },
+                  }}
+                />
                 {card.image && (
                   <Image
                     src={card.image}

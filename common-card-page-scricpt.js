@@ -2,41 +2,8 @@ const fs = require("fs");
 const path = require("path");
 
 const baseDir = path.join(__dirname, "src", "app", "(pages)");
-
-// ==========================================
-// CONFIGURATION: Pages Data Array
-// ==========================================
-// Each object in this array will generate a new page
-// 
-// Required properties:
-//   - pathName: URL route path (e.g., "my-page" creates /my-page route)
-//   - pageTitle: Header title displayed on the page
-//   - cards: Array of card objects
-//   - backRoute: Route to navigate back (optional, defaults to "/")
-//
-// Card object structure:
-//   - title: Card title text (required)
-//   - image: Image name from assets (must match export name from src/assets/index.tsx)
-//   - route: Optional route for clickable card (card won't be clickable if omitted)
-//
-// Example:
-//   {
-//     pathName: "my-awesome-page",
-//     pageTitle: "My Awesome Page",
-//     backRoute: "/",
-//     cards: [
-//       {
-//         title: "Clickable Card",
-//         image: "TestPageImage",
-//         route: "/some-destination"
-//       },
-//       {
-//         title: "Regular Card",
-//         image: "TestPageImage"
-//         // No route = card not clickable
-//       }
-//     ]
-//   }
+const assetsDir = path.join(__dirname, "src", "assets");
+const indexTsxPath = path.join(assetsDir, "index.tsx");
 
 const pages = [
   {
@@ -46,46 +13,21 @@ const pages = [
     cards: [
       {
         title: "Card One",
-        image: "TestPageImage",
-        route: "/some-page"
+        route: "/some-page",
       },
       {
         title: "Card Two",
-        image: "TestPageImage",
-        route: "/another-page"
+        route: "/another-page",
       },
       {
         title: "Card Three",
-        image: "TestPageImage"
       },
       {
         title: "Card Four",
-        image: "TestPageImage",
-        route: "/yet-another-page"
-      }
-    ]
+        route: "/yet-another-page",
+      },
+    ],
   },
-  {
-    pathName: "quality-standards",
-    pageTitle: "Quality Standards Overview",
-    backRoute: "/",
-    cards: [
-      {
-        title: "Standard One",
-        image: "CqcFundamentalStandardsImage",
-        route: "/standard-details"
-      },
-      {
-        title: "Standard Two",
-        image: "CareQualityCommissionCqcOverviewImage"
-      },
-      {
-        title: "Standard Three",
-        image: "CrossSectorInspectionsImage",
-        route: "/cross-sector"
-      }
-    ]
-  }
 ];
 
 const toPascalCase = (str) =>
@@ -107,32 +49,40 @@ const toKebabCase = (str) =>
     .replace(/^-+|-+$/g, "");
 
 // Generate the page content
-const generatePageContent = (page, pascalName) => {
+const generatePageContent = (page, pascalName, cardsWithImages) => {
   const kebabBackRoute = toKebabCase(page.backRoute || "/");
-  const finalBackRoute = `"${kebabBackRoute.startsWith('/') ? kebabBackRoute : '/' + kebabBackRoute}"`;
+  const finalBackRoute = `"${kebabBackRoute.startsWith("/") ? kebabBackRoute : "/" + kebabBackRoute}"`;
 
-  const cardsArray = page.cards.map(card => {
-    const cardObj = `{
+  const cardsArray = cardsWithImages
+    .map((card) => {
+      const cardObj = `{
       title: "${card.title}",
-      image: ${card.image}`;
-    
-    const routePart = card.route ? `,
-      route: "${card.route}"` : '';
-    
-    return cardObj + routePart + `
-    }`;
-  }).join(',\n  ');
+      image: ${card.imageName}`;
+
+      const routePart = card.route
+        ? `,
+      route: "${card.route}"`
+        : "";
+
+      return (
+        cardObj +
+        routePart +
+        `
+    }`
+      );
+    })
+    .join(",\n  ");
 
   // Get unique images for this specific page
   const pageImages = new Set();
-  page.cards.forEach(card => {
-    if (card.image) {
-      pageImages.add(card.image);
+  cardsWithImages.forEach((card) => {
+    if (card.imageName) {
+      pageImages.add(card.imageName);
     }
   });
   const uniqueImagesForPage = Array.from(pageImages);
 
-  return `import { ${uniqueImagesForPage.join(', ')} } from '@/assets';
+  return `import { ${uniqueImagesForPage.join(", ")} } from '@/assets';
 import CommonCardPage from '@/components/common-card-page';
 import React from 'react';
 
@@ -155,12 +105,20 @@ export default ${pascalName}Page;
 };
 
 for (const page of pages) {
-  if (!page.pathName || typeof page.pathName !== "string" || !page.pathName.trim()) {
+  if (
+    !page.pathName ||
+    typeof page.pathName !== "string" ||
+    !page.pathName.trim()
+  ) {
     console.log("[SKIP] Invalid or empty pathName. Skipping entry.");
     continue;
   }
 
-  if (!page.pageTitle || typeof page.pageTitle !== "string" || !page.pageTitle.trim()) {
+  if (
+    !page.pageTitle ||
+    typeof page.pageTitle !== "string" ||
+    !page.pageTitle.trim()
+  ) {
     console.log("[SKIP] Invalid or empty pageTitle. Skipping entry.");
     continue;
   }
@@ -172,10 +130,10 @@ for (const page of pages) {
 
   const kebabBase = toKebabCase(page.pathName);
   const pascal = toPascalCase(page.pathName);
-  
+
   if (!kebabBase || !pascal) {
     console.log(
-      `[SKIP] Could not generate valid names for pathName: '${page.pathName}'. Skipping.`,
+      `[SKIP] Could not generate valid names for pathName: '${page.pathName}'. Skipping.`
     );
     continue;
   }
@@ -191,16 +149,16 @@ for (const page of pages) {
   }
   if (dirSuffix >= maxTries) {
     console.log(
-      `[ERROR] Too many duplicate directories for '${page.pathName}'. Skipping.`,
+      `[ERROR] Too many duplicate directories for '${page.pathName}'. Skipping.`
     );
     continue;
   }
   if (finalKebab !== kebabBase) {
     console.log(
-      `Directory for page '${page.pathName}' already exists. Created: ${finalKebab}`,
+      `Directory for page '${page.pathName}' already exists. Created: ${finalKebab}`
     );
   }
-  
+
   if (!fs.existsSync(dir)) {
     try {
       fs.mkdirSync(dir, { recursive: true });
@@ -213,7 +171,44 @@ for (const page of pages) {
     console.log(`[SKIP] Directory already exists and was not created: ${dir}`);
   }
 
-  const pageContent = generatePageContent(page, pascal);
+  // Generate image names and add exports to assets/index.tsx for each card
+  const cardsWithImages = page.cards.map((card, index) => {
+    const cardPascal = toPascalCase(card.title);
+    const imageName = `${cardPascal}Image`;
+    const svgFileName = `${imageName}.svg`;
+
+    // Add export to assets/index.tsx if not already there
+    const imageExport = `export { default as ${imageName} } from "./${svgFileName}";\n`;
+    if (fs.existsSync(indexTsxPath)) {
+      try {
+        const content = fs.readFileSync(indexTsxPath, "utf8");
+        if (!content.includes(imageExport.trim())) {
+          fs.appendFileSync(indexTsxPath, imageExport);
+          console.log(`✅ Export added to index.tsx: ${imageName}`);
+        } else {
+          console.log(
+            `[SKIP] Export already exists in index.tsx: ${imageName}`
+          );
+        }
+      } catch (err) {
+        console.log(`[ERROR] Failed to add export to index.tsx:`, err.message);
+      }
+    } else {
+      try {
+        fs.writeFileSync(indexTsxPath, imageExport);
+        console.log(`✅ Created index.tsx with export: ${imageName}`);
+      } catch (err) {
+        console.log(`[ERROR] Failed to write index.tsx:`, err.message);
+      }
+    }
+
+    return {
+      ...card,
+      imageName: imageName,
+    };
+  });
+
+  const pageContent = generatePageContent(page, pascal, cardsWithImages);
 
   try {
     fs.writeFileSync(path.join(dir, "page.tsx"), pageContent, "utf8");
@@ -225,4 +220,3 @@ for (const page of pages) {
 }
 
 console.log("\n✨ Common Card pages have been created successfully!");
-
