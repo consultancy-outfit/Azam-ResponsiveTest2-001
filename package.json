@@ -16,6 +16,7 @@
     "@mui/icons-material": "^7.1.2",
     "@mui/material": "^7.1.2",
     "@netlify/plugin-nextjs": "^5.11.5",
+    "framer-motion": "^12.23.24",
     "image-map-resizer": "^1.0.10",
     "next": "15.3.4",
     "react": "^19.0.0",
