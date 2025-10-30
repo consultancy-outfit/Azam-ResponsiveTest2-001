@@ -7,23 +7,25 @@ const indexTsxPath = path.join(assetsDir, "index.tsx");
 
 const pages = [
   {
-    pathName: "registration-scope",
-    pageTitle: "Registration Scope",
-    backRoute: "/",
+    pathName: "Some Page",
+    pageTitle: "Some Page",
+    backRoute: "/registration-scope",
     cards: [
       {
-        title: "Card One",
+        title: "Card 5",
         route: "/some-page",
+        data: true,
       },
       {
-        title: "Card Two",
+        title: "Card 6",
         route: "/another-page",
       },
       {
-        title: "Card Three",
+        title: "Card 7",
+        data: true
       },
       {
-        title: "Card Four",
+        title: "Card 8",
         route: "/yet-another-page",
       },
     ],
@@ -55,21 +57,31 @@ const generatePageContent = (page, pascalName, cardsWithImages) => {
 
   const cardsArray = cardsWithImages
     .map((card) => {
-      const cardObj = `{
-      title: "${card.title}",
-      image: ${card.imageName}`;
-
       const routePart = card.route
         ? `,
       route: "${card.route}"`
         : "";
 
-      return (
-        cardObj +
-        routePart +
-        `
-    }`
-      );
+      const dataPart = card.data ? true : false;
+
+      // Build properties string for card
+      let properties = `title: "${card.title}",\n`;
+
+      if (card.data) {
+        properties += `  data: true,\n`;
+      }
+
+      properties += `  image: ${card.imageName}`;
+
+      if (card.route) {
+        properties += `,\n  route: "${card.route}"`;
+      }
+
+      const cardObj = `{
+  ${properties}
+}`;
+
+      return cardObj;
     })
     .join(",\n  ");
 

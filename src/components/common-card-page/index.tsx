@@ -20,7 +20,7 @@ interface CardItem {
   title: string;
   image: string;
   route?: string;
-  chipNumber?: number;
+  data?: boolean;
 }
 
 interface CommonCardPageProps {
@@ -33,7 +33,7 @@ interface CommonCardPageProps {
 // Function to generate random light colors
 const generateLightColor = () => {
   const hue = Math.floor(Math.random() * 360);
-  const saturation = Math.floor(Math.random() * 30) + 20; // 20-50%
+  const saturation = Math.floor(Math.random() * 50) + 20; // 20-50%
   const lightness = Math.floor(Math.random() * 20) + 85; // 85-105%
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 };
@@ -130,7 +130,7 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                 sx={{
                   width: "100%",
                   height: "100%",
-                  borderRadius: 3,
+                  borderRadius: 4,
                   textAlign: "center",
                   boxShadow: "2px 2px 10px rgb(0 0 0 / 35%)",
                   p: 4,
@@ -151,23 +151,24 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                 }}
               >
                 <Chip
-                  label={card.chipNumber !== undefined ? card.chipNumber : ""}
+                  label={
+                    card.data ? "Available" : "Not Available"
+                  }
                   sx={{
                     position: "absolute",
-                    top: 8,
-                    right: 8,
-                    backgroundColor: "rgba(2, 70, 188, 0.9)",
+                    top: 0,
+                    right: 0,
+                    backgroundColor: "rgba(188, 61, 2, 0.5)",
                     color: "white",
-                    fontWeight: 600,
                     fontSize: "0.875rem",
                     height: "32px",
-                    visibility:
-                      card.chipNumber !== undefined ? "visible" : "hidden",
                     "& .MuiChip-label": {
                       px: 1,
                     },
+                    borderRadius: '0 0 0 12px'
                   }}
                 />
+                <br />
                 {card.image && (
                   <Image
                     src={card.image}
