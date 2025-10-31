@@ -33,8 +33,8 @@ interface CommonCardPageProps {
 // Function to generate random light colors
 const generateLightColor = () => {
   const hue = Math.floor(Math.random() * 360);
-  const saturation = Math.floor(Math.random() * 50) + 20; // 20-50%
-  const lightness = Math.floor(Math.random() * 20) + 85; // 85-105%
+  const saturation = Math.floor(Math.random() * 40) + 20; // 40-75%
+  const lightness = Math.floor(Math.random() * 18) + 80; // 58-73%
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 };
 
@@ -151,9 +151,7 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                 }}
               >
                 <Chip
-                  label={
-                    card.data ? "Available" : "Not Available"
-                  }
+                  label={card.data ? "Available" : "Not Available"}
                   sx={{
                     position: "absolute",
                     top: 0,
@@ -165,7 +163,7 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                     "& .MuiChip-label": {
                       px: 1,
                     },
-                    borderRadius: '0 0 0 12px'
+                    borderRadius: "0 0 0 12px",
                   }}
                 />
                 <br />

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0118 0%, #1a0a2e 50%, #0a0118 100%);
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Left Side Content */
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 6rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4rem;
+            letter-spacing: -1px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa502 50%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 70px rgba(255, 107, 157, 0.6);
+        }
+
+        .arrow-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover .arrow-icon {
+            transform: translateX(5px);
+        }
+
+        /* Right Side Animation Area */
+        .right-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Statue Container */
+        .statue-container {
+            position: relative;
+            z-index: 5;
+            width: 350px;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 30px 60px rgba(255, 107, 157, 0.4));
+            transition: transform 0.1s ease-out;
+        }
+
+        .statue {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 30px rgba(255, 107, 157, 0.3));
+            animation: statueFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes statueFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        /* Floating Planets around Cat */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: planetOrbit ease-in-out infinite;
+        }
+
+        .planet-1 {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            top: 10%;
+            left: 15%;
+            animation-duration: 8s;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+        }
+
+        .planet-1::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: rgba(0, 212, 255, 0.3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            border-radius: 50%;
+        }
+
+        .planet-2 {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #26de81 0%, #20bf6b 100%);
+            top: 15%;
+            right: 10%;
+            animation-duration: 10s;
+            animation-delay: 1s;
+            box-shadow: 0 0 25px rgba(38, 222, 129, 0.6);
+        }
+
+        .planet-2::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 3px solid rgba(38, 222, 129, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet-3 {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #ffa502 0%, #ff6348 100%);
+            bottom: 15%;
+            left: 10%;
+            animation-duration: 9s;
+            animation-delay: 2s;
+            box-shadow: 0 0 20px rgba(255, 165, 2, 0.6);
+        }
+
+        .planet-4 {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            bottom: 30%;
+            right: 15%;
+            animation-duration: 7s;
+            animation-delay: 0.5s;
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.6);
+        }
+
+        .planet-5 {
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            top: 50%;
+            left: 5%;
+            animation-duration: 11s;
+            animation-delay: 1.5s;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+        }
+
+        @keyframes planetOrbit {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(20px, -20px) scale(1.1);
+            }
+            50% {
+                transform: translate(40px, 0) scale(1);
+            }
+            75% {
+                transform: translate(20px, 20px) scale(0.9);
+            }
+        }
+
+        /* Animated Gradient Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.8;
+            animation: orbFloat ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ff6b9d 0%, transparent 70%);
+            top: 10%;
+            right: 20%;
+            animation-duration: 8s;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #ffa502 0%, transparent 70%);
+            bottom: 15%;
+            right: 10%;
+            animation-duration: 10s;
+            animation-delay: 2s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #00d4ff 0%, transparent 70%);
+            top: 50%;
+            right: 40%;
+            animation-duration: 12s;
+            animation-delay: 4s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(40px, -40px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* 3D Floating Cards */
+        .floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: cardFloat ease-in-out infinite;
+        }
+
+        .card-1 {
+            width: 200px;
+            height: 120px;
+            top: 20%;
+            right: 15%;
+            animation-duration: 6s;
+        }
+
+        .card-2 {
+            width: 180px;
+            height: 100px;
+            bottom: 25%;
+            right: 25%;
+            animation-duration: 8s;
+            animation-delay: 1s;
+        }
+
+        .card-3 {
+            width: 160px;
+            height: 90px;
+            top: 55%;
+            right: 10%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0) rotateZ(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotateZ(5deg);
+            }
+        }
+
+        /* Particle System */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particleRise linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 20%; animation-duration: 10s; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 40%; animation-duration: 12s; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 60%; animation-duration: 11s; animation-delay: 1s; }
+        .particle:nth-child(4) { left: 80%; animation-duration: 13s; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 30%; animation-duration: 9s; animation-delay: 1.5s; }
+        .particle:nth-child(6) { left: 50%; animation-duration: 14s; animation-delay: 2.5s; }
+        .particle:nth-child(7) { left: 70%; animation-duration: 10s; animation-delay: 0.5s; }
+        .particle:nth-child(8) { left: 10%; animation-duration: 12s; animation-delay: 3.5s; }
+
+        @keyframes particleRise {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Glowing Lines */
+        .glow-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+            animation: lineGlow 4s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        .line-1 {
+            width: 40%;
+            top: 30%;
+            right: 0;
+            animation-delay: 0s;
+        }
+
+        .line-2 {
+            width: 50%;
+            top: 60%;
+            right: 0;
+            animation-delay: 1.5s;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+
+        .line-3 {
+            width: 35%;
+            top: 80%;
+            right: 0;
+            animation-delay: 3s;
+            background: linear-gradient(90deg, transparent, #ffa502, transparent);
+        }
+
+        @keyframes lineGlow {
+            0%, 100% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            50% {
+                transform: translateX(-100%);
+                opacity: 0.8;
+            }
+        }
+
+        /* Grid Background */
+        .grid-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-section {
+                padding: 3rem 2rem;
+            }
+
+            .right-section {
+                display: none;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">BRAND</div>
+            
+            <h1>
+                Build the <span class="gradient-text">Future</span><br>
+                of Digital<br>
+                Experiences
+            </h1>
+            
+            <p class="subtitle">
+                Transform your creative vision into reality with powerful tools and stunning animations that bring your ideas to life.
+            </p>
+            
+            <button class="cta-button" onclick="handleNavigation()">
+                Get Started
+                <span class="arrow-icon">→</span>
+            </button>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <!-- Grid Background -->
+            <div class="grid-bg"></div>
+
+            <!-- Gradient Orbs -->
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+
+            <!-- Pixel Dragon Object -->
+            <div class="statue-container">
+                <svg class="statue" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Dragon Body - Pixel Style -->
+                    <g class="dragon-body">
+                        <!-- Tail -->
+                        <rect x="50" y="350" width="20" height="20" fill="#8b5cf6"/>
+                        <rect x="70" y="340" width="20" height="20" fill="#8b5cf6"/>
+                        <rect x="90" y="330" width="20" height="20" fill="#a78bfa"/>
+                        <rect x="110" y="320" width="20" height="20" fill="#a78bfa"/>
+                        <rect x="130" y="310" width="20" height="20" fill="#8b5cf6"/>
+                        
+                        <!-- Tail Spikes -->
+                        <rect x="60" y="330" width="10" height="10" fill="#ff6b9d"/>
+                        <rect x="100" y="315" width="10" height="10" fill="#ff6b9d"/>
+                        
+                        <!-- Lower Body -->
+                        <rect x="150" y="300" width="20" height="20" fill="#6366f1"/>
+                        <rect x="170" y="300" width="20" height="20" fill="#6366f1"/>
+                        <rect x="190" y="300" width="20" height="20" fill="#6366f1"/>
+                        <rect x="210" y="300" width="20" height="20" fill="#6366f1"/>
+                        
+                        <rect x="150" y="280" width="20" height="20" fill="#8b5cf6"/>
+                        <rect x="170" y="280" width="20" height="20" fill="#a78bfa"/>
+                        <rect x="190" y="280" width="20" height="20" fill="#a78bfa"/>
+                        <rect x="210" y="280" width="20" height="20" fill="#8b5cf6"/>
+                        
+                        <!-- Middle Body -->
+                        <rect x="160" y="260" width="20" height="20" fill="#8b5cf6"/>
+                        <rect x="180" y="260" width="20" height="20" fill="#a78bfa"/>
+                        <rect x="200" y="260" width="20" height="20" fill="#8b5cf6"/>
+                        
+                        <!-- Back Spikes -->
+                        <rect x="170" y="240" width="10" height="10" fill="#ff6b9d"/>
+                        <rect x="190" y="240" width="10" height="10" fill="#ffa502"/>
+                        <rect x="210" y="250" width="10" height="10" fill="#ff6b9d"/>
+                        
+                        <!-- Legs -->
+                        <rect x="160" y="320" width="15" height="20" fill="#6366f1"/>
+                        <rect x="160" y="340" width="20" height="15" fill="#4f46e5"/>
+                        
+                        <rect x="205" y="320" width="15" height="20" fill="#6366f1"/>
+                        <rect x="200" y="340" width="20" height="15" fill="#4f46e5"/>
+                    </g>
+                    
+                    <!-- Dragon Neck and Head - Moveable -->
+                    <g class="dragon-neck" transform-origin="200 260">
+                        <!-- Neck -->
+                        <rect x="190" y="220" width="20" height="20" fill="#8b5cf6"/>
+                        <rect x="190" y="200" width="20" height="20" fill="#a78bfa"/>
+                        <rect x="190" y="180" width="20" height="20" fill="#8b5cf6"/>
+                        <rect x="190" y="160" width="20" height="20" fill="#a78bfa"/>
+                        
+                        <!-- Head Base -->
+                        <rect x="170" y="140" width="20" height="20" fill="#8b5cf6"/>
+                        <rect x="190" y="140" width="20" height="20" fill="#a78bfa"/>
+                        <rect x="210" y="140" width="20" height="20" fill="#8b5cf6"/>
+                        
+                        <rect x="170" y="120" width="20" height="20" fill="#a78bfa"/>
+                        <rect x="190" y="120" width="20" height="20" fill="#c4b5fd"/>
+                        <rect x="210" y="120" width="20" height="20" fill="#a78bfa"/>
+                        
+                        <!-- Head Top -->
+                        <rect x="180" y="100" width="20" height="20" fill="#8b5cf6"/>
+                        <rect x="200" y="100" width="20" height="20" fill="#8b5cf6"/>
+                        
+                        <!-- Horns -->
+                        <rect x="170" y="90" width="10" height="10" fill="#ffa502"/>
+                        <rect x="165" y="80" width="10" height="10" fill="#ff6348"/>
+                        <rect x="220" y="90" width="10" height="10" fill="#ffa502"/>
+                        <rect x="225" y="80" width="10" height="10" fill="#ff6348"/>
+                        
+                        <!-- Eyes -->
+                        <rect x="175" y="125" width="10" height="10" fill="#ff6b9d"/>
+                        <rect x="178" y="128" width="4" height="4" fill="#ffffff"/>
+                        
+                        <rect x="215" y="125" width="10" height="10" fill="#ff6b9d"/>
+                        <rect x="218" y="128" width="4" height="4" fill="#ffffff"/>
+                        
+                        <!-- Snout -->
+                        <rect x="230" y="130" width="20" height="15" fill="#a78bfa"/>
+                        <rect x="250" y="135" width="15" height="10" fill="#8b5cf6"/>
+                        
+                        <!-- Nostril -->
+                        <rect x="255" y="138" width="5" height="5" fill="#4f46e5"/>
+                    </g>
+                    
+                    <!-- Fire Breath (initially hidden) -->
+                    <g class="fire-breath" opacity="0">
+                        <!-- Fire Pixels -->
+                        <rect x="265" y="140" width="15" height="15" fill="#ff6348"/>
+                        <rect x="280" y="135" width="15" height="15" fill="#ffa502"/>
+                        <rect x="295" y="130" width="15" height="15" fill="#ff6348"/>
+                        <rect x="310" y="138" width="15" height="15" fill="#ffa502"/>
+                        <rect x="325" y="133" width="15" height="15" fill="#ff6348"/>
+                        
+                        <rect x="275" y="150" width="12" height="12" fill="#ffa502"/>
+                        <rect x="290" y="148" width="12" height="12" fill="#ff6348"/>
+                        <rect x="305" y="152" width="12" height="12" fill="#ffa502"/>
+                        <rect x="320" y="148" width="12" height="12" fill="#ffed4e"/>
+                        
+                        <rect x="285" y="125" width="12" height="12" fill="#ffa502"/>
+                        <rect x="300" y="120" width="12" height="12" fill="#ffed4e"/>
+                        <rect x="315" y="123" width="12" height="12" fill="#ff6348"/>
+                    </g>
+                    
+                    <!-- Glow effect -->
+                    <circle cx="200" cy="220" r="150" fill="url(#dragonGlowGradient)" opacity="0.2"/>
+                    
+                    <defs>
+                        <radialGradient id="dragonGlowGradient">
+                            <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.6" />
+                            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+                
+                <!-- Floating Planets around Dragon -->
+                <div class="planet planet-1"></div>
+                <div class="planet planet-2"></div>
+                <div class="planet planet-3"></div>
+                <div class="planet planet-4"></div>
+                <div class="planet planet-5"></div>
+            </div>
+
+            <!-- Floating Cards -->
+            <div class="floating-card card-1"></div>
+            <div class="floating-card card-2"></div>
+            <div class="floating-card card-3"></div>
+
+            <!-- Glowing Lines -->
+            <div class="glow-line line-1"></div>
+            <div class="glow-line line-2"></div>
+            <div class="glow-line line-3"></div>
+
+            <!-- Particles -->
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <script>
+        function handleNavigation() {
+            console.log('Navigation button clicked');
+            // Add your navigation logic here
+            // For Next.js, you would use: router.push('/your-page');
+            alert('Button clicked! Add your navigation logic here.');
+        }
+
+        // Mouse Movement Interaction
+        const rightSection = document.querySelector('.right-section');
+        const orbs = document.querySelectorAll('.orb');
+        const cards = document.querySelectorAll('.floating-card');
+        const container = document.querySelector('.container');
+        const statue = document.querySelector('.statue-container');
+        const dragonNeck = document.querySelector('.dragon-neck');
+        const fireBreath = document.querySelector('.fire-breath');
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        let movementCount = 0;
+        let lastMovementTime = 0;
+        let isBreathingFire = false;
+
+        // Track mouse movement
+        document.addEventListener('mousemove', (e) => {
+            const currentTime = Date.now();
+            
+            // Count significant movements
+            if (currentTime - lastMovementTime > 200) {
+                movementCount++;
+                lastMovementTime = currentTime;
+                
+                // After 2 movements, trigger fire breath
+                if (movementCount >= 2 && !isBreathingFire) {
+                    breatheFire();
+                    movementCount = 0;
+                }
+            }
+            
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+        });
+
+        // Fire breathing animation
+        function breatheFire() {
+            isBreathingFire = true;
+            
+            // Show fire with animation
+            fireBreath.style.transition = 'opacity 0.3s ease-out';
+            fireBreath.style.opacity = '1';
+            
+            // Animate fire expanding
+            setTimeout(() => {
+                fireBreath.style.transform = 'scale(1.3) translateX(20px)';
+            }, 100);
+            
+            // Hide fire after duration
+            setTimeout(() => {
+                fireBreath.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                fireBreath.style.opacity = '0';
+                fireBreath.style.transform = 'scale(1) translateX(0)';
+                
+                setTimeout(() => {
+                    isBreathingFire = false;
+                }, 500);
+            }, 1000);
+        }
+
+        // Smooth animation loop
+        function animate() {
+            // Smooth following
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+
+            // Move dragon neck based on mouse position
+            if (dragonNeck) {
+                const neckRotation = targetX * 15; // Horizontal neck rotation
+                const neckTilt = -targetY * 10; // Vertical neck tilt
+                dragonNeck.style.transformOrigin = '200px 260px';
+                dragonNeck.style.transform = `rotate(${neckRotation}deg) rotateX(${neckTilt}deg)`;
+            }
+
+            // Move entire dragon with 3D perspective
+            if (statue) {
+                const rotateY = targetX * 20;
+                const rotateX = -targetY * 20;
+                const translateX = targetX * 20;
+                const translateY = targetY * 20;
+                statue.style.transform = `
+                    perspective(1000px) 
+                    rotateY(${rotateY}deg) 
+                    rotateX(${rotateX}deg) 
+                    translateX(${translateX}px) 
+                    translateY(${translateY}px)
+                `;
+            }
+
+            // Move orbs based on mouse position
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 15;
+                const x = targetX * speed;
+                const y = targetY * speed;
+                orb.style.transform = `translate(${x}px, ${y}px)`;
+            });
+
+            // Move cards with parallax effect
+            cards.forEach((card, index) => {
+                const speed = (index + 1) * 20;
+                const x = targetX * speed;
+                const y = targetY * speed;
+                const rotation = targetX * 5;
+                card.style.transform = `translate(${x}px, ${y}px) rotateZ(${rotation}deg)`;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Cursor follower effect
+        const cursor = document.createElement('div');
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.6), transparent);
+            pointer-events: none;
+            z-index: 9999;
+            filter: blur(10px);
+            transition: transform 0.1s ease;
+        `;
+        document.body.appendChild(cursor);
+
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+        });
+
+        function updateCursor() {
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            requestAnimationFrame(updateCursor);
+        }
+
+        updateCursor();
+
+        // Interactive hover effects on cards
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.background = 'rgba(255, 107, 157, 0.15)';
+                card.style.transform += ' scale(1.1)';
+                card.style.transition = 'all 0.3s ease';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'rgba(255, 255, 255, 0.05)';
+                card.style.transition = 'all 0.3s ease';
+            });
+        });
+
+        // Tilt effect on CTA button
+        const ctaButton = document.querySelector('.cta-button');
+        ctaButton.addEventListener('mousemove', (e) => {
+            const rect = ctaButton.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            ctaButton.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+        });
+
+        ctaButton.addEventListener('mouseleave', () => {
+            ctaButton.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+    </script>
+</body>
+</html>

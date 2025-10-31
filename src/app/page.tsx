@@ -1,75 +1,106 @@
 "use client";
 
-import { useEffect } from "react";
-import { Box, Typography, Button, useTheme } from "@mui/material";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useRouter } from "next/navigation";
 
-const PremiumLandingPage = () => {
+const DragonLandingPage: React.FC = () => {
   const router = useRouter();
-  const theme = useTheme();
+  // target (raw) normalized mouse position (-1..1)
+  const targetXRef = useRef(0);
+  const targetYRef = useRef(0);
+  // motion values that framer will read
+  const smoothX = useMotionValue(0);
+  const smoothY = useMotionValue(0);
 
-  // ── Motion values (single source of truth) ───────────────────────────────────
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  // extra UI state
+  const [showFireBreath, setShowFireBreath] = useState(false);
 
-  // spring smoothing (only smoothing layer)
-  const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 100, damping: 20 });
+  // velocity detection for fire-breath
+  const lastMoveTimeRef = useRef<number | null>(null);
+  const lastPosRef = useRef({ x: 0, y: 0 });
 
-  // Derived transforms (computed ONCE and reused)
-  const moveX20 = useTransform(springX, (x) => x * 20);
-  const moveY20 = useTransform(springY, (y) => y * 20);
-  const moveX18 = useTransform(springX, (x) => x * 18);
-  const moveY18 = useTransform(springY, (y) => y * 18);
-  const moveX22 = useTransform(springX, (x) => x * 22);
-  const moveY22 = useTransform(springY, (y) => y * 22);
+  // LERP helper
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-  const moveX12 = useTransform(springX, (x) => x * 12);
-  const moveY12 = useTransform(springY, (y) => y * 12);
-  const moveX14 = useTransform(springX, (x) => x * 14);
-  const moveY14 = useTransform(springY, (y) => y * 14);
-  const moveX16 = useTransform(springX, (x) => x * 16);
-  const moveY16 = useTransform(springY, (y) => y * 16);
-
-  // statue-specific transforms
-  const rotateY = useTransform(springX, [-1, 1], [-15, 15]);
-  const rotateX = useTransform(springY, [-1, 1], [15, -15]);
-  const statMoveX = useTransform(springX, [-1, 1], [-25, 25]);
-  const statMoveY = useTransform(springY, [-1, 1], [-25, 25]);
-
-  // ── Mouse listener updates motion values (no setState) ──────────────────────
+  // Mouse capture
   useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
+    const onMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
-      mouseX.set(x);
-      mouseY.set(y);
+      const now = performance.now();
+
+      // velocity calc
+      const last = lastPosRef.current;
+      const lastTime = lastMoveTimeRef.current;
+      if (lastTime !== null) {
+        const dt = Math.max(1, now - lastTime);
+        const dx = x - last.x;
+        const dy = y - last.y;
+        const speed = Math.sqrt(dx * dx + dy * dy) / dt; // normalized speed per ms
+
+        // threshold tuned experimentally — quick flick triggers breath
+        if (speed > 0.008) {
+          // minor debounce: only trigger when not already showing
+          if (!showFireBreath) {
+            setShowFireBreath(true);
+            window.setTimeout(() => setShowFireBreath(false), 900);
+          }
+        }
+      }
+
+      lastPosRef.current = { x, y };
+      lastMoveTimeRef.current = now;
+
+      targetXRef.current = x;
+      targetYRef.current = y;
     };
 
-    window.addEventListener("mousemove", handleMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, [mouseX, mouseY]);
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [showFireBreath]);
 
-  // ── Variants ────────────────────────────────────────────────────────────────
+  // Smooth animation loop
+  useEffect(() => {
+    let raf = 0;
+
+    // different smoothing for x / y to reduce vertical jerk
+    const smoothFactorX = 0.08; // higher = snappier horizontally
+    const smoothFactorY = 0.06; // lower = smoother vertically
+
+    const animate = () => {
+      // tiny damping to avoid NaN
+      const currX = smoothX.get();
+      const currY = smoothY.get();
+
+      const tx = targetXRef.current;
+      const ty = targetYRef.current;
+
+      smoothX.set(lerp(currX, tx, smoothFactorX));
+      smoothY.set(lerp(currY, ty, smoothFactorY));
+
+      raf = requestAnimationFrame(animate);
+    };
+
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
+  }, [smoothX, smoothY]);
+
+  // Variants & helpers
   const floatVariants = {
     animate: {
       y: [0, -20, 0],
-      rotate: [0, 2, 0],
-      transition: {
-        duration: 6,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut" as const,
-      },
+      transition: { duration: 6, repeat: Infinity, ease: "easeInOut" as const },
     },
   };
 
   const orbVariants = (duration: number, delay: number) => ({
     animate: {
-      x: [0, 10, -10, 0],
-      y: [0, -10, 10, 0],
-      scale: [1, 1.05, 1],
+      x: [0, 40, -30, 0],
+      y: [0, -40, 30, 0],
+      scale: [1, 1.1, 0.9, 1],
       transition: {
         duration,
         delay,
@@ -86,7 +117,7 @@ const PremiumLandingPage = () => {
       transition: {
         duration,
         delay,
-        repeat: Number.POSITIVE_INFINITY,
+        repeat: Infinity,
         ease: "easeInOut" as const,
       },
     },
@@ -99,7 +130,7 @@ const PremiumLandingPage = () => {
       transition: {
         duration: 4,
         delay,
-        repeat: Number.POSITIVE_INFINITY,
+        repeat: Infinity,
         ease: "easeInOut" as const,
       },
     },
@@ -113,13 +144,34 @@ const PremiumLandingPage = () => {
       transition: {
         duration,
         delay,
-        repeat: Number.POSITIVE_INFINITY,
+        repeat: Infinity,
         ease: "linear" as const,
       },
     },
   });
 
-  // ── Render ─────────────────────────────────────────────────────────────────
+  const fireBreathVariants = {
+    hidden: { opacity: 0, scale: 1, x: 0 },
+    visible: {
+      opacity: [0, 1, 1, 0],
+      scale: [1, 1.35],
+      x: [0, 28],
+      transition: { duration: 0.9, ease: "easeOut" as const },
+    },
+  };
+
+  // Derived transforms for rotation, translation
+  const dragonHeadRotateZ = useTransform(smoothX, (x) => x * 20);
+  const dragonHeadRotateX = useTransform(smoothY, (y) => -y * 18);
+
+  // Subtle global parallax for planets/cards
+  const parallaxXSmall = useTransform(smoothX, (x) => x * 12);
+  const parallaxYSmall = useTransform(smoothY, (y) => y * 12);
+  const parallaxXMed = useTransform(smoothX, (x) => x * 16);
+  const parallaxYMed = useTransform(smoothY, (y) => y * 16);
+  const parallaxXLarge = useTransform(smoothX, (x) => x * 22);
+  const parallaxYLarge = useTransform(smoothY, (y) => y * 22);
+
   return (
     <Box
       sx={{
@@ -138,9 +190,9 @@ const PremiumLandingPage = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: { xs: "2rem", md: "4rem 6rem" },
+          padding: { xs: "2rem", md: "4rem 12rem" },
           position: "relative",
-          zIndex: 10,
+          zIndex: 20,
         }}
       >
         <motion.div
@@ -158,7 +210,19 @@ const PremiumLandingPage = () => {
               letterSpacing: "-2px",
             }}
           >
-            Welcome Onboard
+            Services{" "}
+            <Box
+              component="span"
+              sx={{
+                background:
+                  "linear-gradient(135deg, #ff6b9d 0%, #ffa502 50%, #00d4ff 100%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Overview
+            </Box>
           </Typography>
         </motion.div>
 
@@ -176,11 +240,10 @@ const PremiumLandingPage = () => {
               maxWidth: "500px",
             }}
           >
-            This portal gives you direct access to live diagrams, workflows, and
-            real-time updates.
-            <br />
-            Login to validate changes, collaborate with teams, and stay in sync
-            with every milestone.
+            Discover how these services breakdown operates with a detailed
+            breakdown, visual workflow diagrams, and process insights. Explore
+            how each component connects to deliver streamlined, efficient, and
+            high-quality outcomes.
           </Typography>
         </motion.div>
 
@@ -201,19 +264,15 @@ const PremiumLandingPage = () => {
               fontWeight: 600,
               boxShadow: "0 20px 60px rgba(255, 107, 157, 0.4)",
               textTransform: "none",
-              width: "fit-content",
               "&:hover": {
                 boxShadow: "0 25px 70px rgba(255, 107, 157, 0.6)",
-                background: "linear-gradient(135deg, #ff6b9d 0%, #c44569 100%)",
               },
-              "& .MuiSvgIcon-root": {
-                transition: "transform 0.3s ease",
-              },
-              "&:hover .MuiSvgIcon-root": {
-                transform: "translateX(5px)",
-              },
+              "& .MuiSvgIcon-root": { transition: "transform 0.3s ease" },
+              "&:hover .MuiSvgIcon-root": { transform: "translateX(5px)" },
             }}
-            onClick={() => router.push("/registration-scope")}
+            onClick={() => {
+              router.push("/registration-scope");
+            }}
           >
             Get Started
           </Button>
@@ -229,6 +288,7 @@ const PremiumLandingPage = () => {
           justifyContent: "center",
           overflow: "hidden",
           perspective: "1200px",
+          pr: "200px",
         }}
       >
         {/* Grid Background */}
@@ -236,7 +296,7 @@ const PremiumLandingPage = () => {
           animate={{ x: [0, 50], y: [0, 50] }}
           transition={{
             duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
+            repeat: Infinity,
             ease: "linear",
           }}
           style={{
@@ -248,26 +308,28 @@ const PremiumLandingPage = () => {
               linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
             `,
             backgroundSize: "50px 50px",
-            opacity: 0.3,
+            opacity: 0.28,
+            zIndex: 0,
           }}
         />
 
-        {/* Orbs (use shared derived transforms) */}
+        {/* Orbs (Planets) */}
         <motion.div
           variants={orbVariants(8, 0)}
           animate="animate"
           style={{
             position: "absolute",
-            width: "400px",
-            height: "400px",
+            width: "420px",
+            height: "420px",
             background: "radial-gradient(circle, #ff6b9d 0%, transparent 70%)",
             borderRadius: "50%",
-            filter: "blur(60px)",
-            opacity: 0.8,
-            top: "10%",
+            filter: "blur(64px)",
+            opacity: 0.9,
+            top: "8%",
             right: "20%",
-            x: moveX20,
-            y: moveY20,
+            x: parallaxXLarge,
+            y: parallaxYLarge,
+            zIndex: 1,
           }}
         />
         <motion.div
@@ -275,16 +337,17 @@ const PremiumLandingPage = () => {
           animate="animate"
           style={{
             position: "absolute",
-            width: "350px",
-            height: "350px",
+            width: "360px",
+            height: "360px",
             background: "radial-gradient(circle, #ffa502 0%, transparent 70%)",
             borderRadius: "50%",
-            filter: "blur(60px)",
+            filter: "blur(56px)",
             opacity: 0.8,
             bottom: "15%",
             right: "10%",
-            x: moveX18,
-            y: moveY18,
+            x: parallaxXMed,
+            y: parallaxYMed,
+            zIndex: 1,
           }}
         />
         <motion.div
@@ -292,250 +355,278 @@ const PremiumLandingPage = () => {
           animate="animate"
           style={{
             position: "absolute",
-            width: "300px",
-            height: "300px",
+            width: "320px",
+            height: "320px",
             background: "radial-gradient(circle, #00d4ff 0%, transparent 70%)",
             borderRadius: "50%",
-            filter: "blur(60px)",
-            opacity: 0.8,
+            filter: "blur(56px)",
+            opacity: 0.85,
             top: "50%",
             right: "40%",
-            x: moveX22,
-            y: moveY22,
+            x: parallaxXLarge,
+            y: parallaxYLarge,
+            zIndex: 1,
           }}
         />
 
-        {/* Statue (uses statue-specific derived transforms) */}
+        {/* Dragon with smooth cursor tracking and head rotation */}
         <motion.div
           variants={floatVariants}
           animate="animate"
           style={{
             position: "relative",
             zIndex: 5,
-            width: "300px",
-            height: "400px",
+            width: "380px",
+            height: "480px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            filter: "drop-shadow(0 30px 60px rgba(255, 107, 157, 0.4))",
-            rotateY,
-            rotateX,
-            x: statMoveX,
-            y: statMoveY,
-            transformStyle: "preserve-3d",
+            filter: "drop-shadow(0 30px 60px rgba(139,92,246,0.18))",
+            rotateY: useTransform(smoothX, (x) => x * 16),
+            rotateX: useTransform(smoothY, (y) => -y * 10),
+            x: useTransform(smoothX, (x) => x * 18),
+            y: useTransform(smoothY, (y) => y * 12),
           }}
-          transition={{ type: "spring", stiffness: 80, damping: 15 }}
         >
-          {/* SVG statue (unchanged) */}
           <svg
-            viewBox="0 0 200 300"
+            viewBox="0 0 400 500"
             xmlns="http://www.w3.org/2000/svg"
             style={{
               width: "100%",
               height: "100%",
-              filter: "drop-shadow(0 10px 30px rgba(0, 212, 255, 0.3))",
+              filter: "drop-shadow(0 10px 30px rgba(139, 92, 246, 0.3))",
             }}
           >
-            <rect
-              x="60"
-              y="260"
-              width="80"
-              height="40"
-              fill="url(#baseGradient)"
-              rx="4"
-            />
-            <path
-              d="M 70 260 L 80 220 L 120 220 L 130 260 Z"
-              fill="url(#pedestalGradient)"
-            />
-            <ellipse
-              cx="100"
-              cy="180"
-              rx="30"
-              ry="40"
-              fill="url(#bodyGradient)"
-            />
-            <ellipse
-              cx="100"
-              cy="170"
-              rx="28"
-              ry="35"
-              fill="url(#bodyGradient2)"
-            />
-            <circle cx="100" cy="120" r="25" fill="url(#headGradient)" />
-            <circle cx="100" cy="115" r="23" fill="url(#headGradient2)" />
-            <ellipse
-              cx="70"
-              cy="170"
-              rx="12"
-              ry="30"
-              fill="url(#armGradient)"
-              transform="rotate(-20 70 170)"
-            />
-            <ellipse
-              cx="130"
-              cy="170"
-              rx="12"
-              ry="30"
-              fill="url(#armGradient)"
-              transform="rotate(20 130 170)"
-            />
-            <path
-              d="M 85 105 L 100 85 L 115 105 Z"
-              fill="url(#crownGradient)"
-            />
-            <circle cx="100" cy="88" r="6" fill="#ffa502" />
+            {/* Dragon Body - Pixel Style (same as your original) */}
+            <g className="dragon-body">
+              {/* Tail */}
+              <rect x="50" y="350" width="20" height="20" fill="#8b5cf6" />
+              <rect x="70" y="340" width="20" height="20" fill="#8b5cf6" />
+              <rect x="90" y="330" width="20" height="20" fill="#a78bfa" />
+              <rect x="110" y="320" width="20" height="20" fill="#a78bfa" />
+              <rect x="130" y="310" width="20" height="20" fill="#8b5cf6" />
+
+              {/* Tail Spikes */}
+              <rect x="60" y="330" width="10" height="10" fill="#ff6b9d" />
+              <rect x="100" y="315" width="10" height="10" fill="#ff6b9d" />
+
+              {/* Lower Body */}
+              <rect x="150" y="300" width="20" height="20" fill="#6366f1" />
+              <rect x="170" y="300" width="20" height="20" fill="#6366f1" />
+              <rect x="190" y="300" width="20" height="20" fill="#6366f1" />
+              <rect x="210" y="300" width="20" height="20" fill="#6366f1" />
+
+              <rect x="150" y="280" width="20" height="20" fill="#8b5cf6" />
+              <rect x="170" y="280" width="20" height="20" fill="#a78bfa" />
+              <rect x="190" y="280" width="20" height="20" fill="#a78bfa" />
+              <rect x="210" y="280" width="20" height="20" fill="#8b5cf6" />
+
+              {/* Middle Body */}
+              <rect x="160" y="260" width="20" height="20" fill="#8b5cf6" />
+              <rect x="180" y="260" width="20" height="20" fill="#a78bfa" />
+              <rect x="200" y="260" width="20" height="20" fill="#8b5cf6" />
+
+              {/* Back Spikes */}
+              <rect x="170" y="240" width="10" height="10" fill="#ff6b9d" />
+              <rect x="190" y="240" width="10" height="10" fill="#ffa502" />
+              <rect x="210" y="250" width="10" height="10" fill="#ff6b9d" />
+
+              {/* Legs */}
+              <rect x="160" y="320" width="15" height="20" fill="#6366f1" />
+              <rect x="160" y="340" width="20" height="15" fill="#4f46e5" />
+
+              <rect x="205" y="320" width="15" height="20" fill="#6366f1" />
+              <rect x="200" y="340" width="20" height="15" fill="#4f46e5" />
+            </g>
+
+            {/* Dragon Neck and Head - Smooth cursor rotation (motion.g) */}
+            <motion.g
+              className="dragon-head"
+              style={{
+                transformOrigin: "200px 260px",
+                rotateZ: dragonHeadRotateZ,
+                rotateX: dragonHeadRotateX,
+              }}
+            >
+              {/* Neck */}
+              <rect x="190" y="220" width="20" height="20" fill="#8b5cf6" />
+              <rect x="190" y="200" width="20" height="20" fill="#a78bfa" />
+              <rect x="190" y="180" width="20" height="20" fill="#8b5cf6" />
+              <rect x="190" y="160" width="20" height="20" fill="#a78bfa" />
+
+              {/* Head Base */}
+              <rect x="170" y="140" width="20" height="20" fill="#8b5cf6" />
+              <rect x="190" y="140" width="20" height="20" fill="#a78bfa" />
+              <rect x="210" y="140" width="20" height="20" fill="#8b5cf6" />
+
+              <rect x="170" y="120" width="20" height="20" fill="#a78bfa" />
+              <rect x="190" y="120" width="20" height="20" fill="#c4b5fd" />
+              <rect x="210" y="120" width="20" height="20" fill="#a78bfa" />
+
+              {/* Head Top */}
+              <rect x="180" y="100" width="20" height="20" fill="#8b5cf6" />
+              <rect x="200" y="100" width="20" height="20" fill="#8b5cf6" />
+
+              {/* Horns */}
+              <rect x="170" y="90" width="10" height="10" fill="#ffa502" />
+              <rect x="165" y="80" width="10" height="10" fill="#ff6348" />
+              <rect x="220" y="90" width="10" height="10" fill="#ffa502" />
+              <rect x="225" y="80" width="10" height="10" fill="#ff6348" />
+
+              {/* Eyes */}
+              <rect x="175" y="125" width="10" height="10" fill="#ff6b9d" />
+              <rect x="178" y="128" width="4" height="4" fill="#ffffff" />
+
+              <rect x="215" y="125" width="10" height="10" fill="#ff6b9d" />
+              <rect x="218" y="128" width="4" height="4" fill="#ffffff" />
+
+              {/* Snout */}
+              <rect x="230" y="130" width="20" height="15" fill="#a78bfa" />
+              <rect x="250" y="135" width="15" height="10" fill="#8b5cf6" />
+
+              {/* Nostril */}
+              <rect x="255" y="138" width="5" height="5" fill="#4f46e5" />
+            </motion.g>
+
+            {/* Fire Breath Effect */}
+            {showFireBreath && (
+              <motion.div
+                variants={fireBreathVariants}
+                initial="hidden"
+                animate="visible"
+                style={{
+                  position: "absolute",
+                  top: "48%", // adjust to match dragon’s mouth
+                  left: "90%",
+                  width: "140px",
+                  height: "12px",
+                  background:
+                    "linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,120,0,0.8), rgba(255,0,0,0))",
+                  borderRadius: "12px",
+                  filter: "blur(2px) drop-shadow(0 0 10px rgba(255,120,0,0.8))",
+                  transformOrigin: "left center",
+                  zIndex: 6,
+                }}
+              />
+            )}
+            <motion.g
+              className="fire-breath"
+              variants={fireBreathVariants}
+              initial="hidden"
+              animate={showFireBreath ? "visible" : "hidden"}
+              style={{ transformOrigin: "270px 140px" }}
+            >
+              {/* Flame pixels */}
+              <rect x="265" y="140" width="15" height="15" fill="#ff6348" />
+              <rect x="280" y="135" width="15" height="15" fill="#ffa502" />
+              <rect x="295" y="130" width="15" height="15" fill="#ff6348" />
+              <rect x="310" y="138" width="15" height="15" fill="#ffa502" />
+              <rect x="325" y="133" width="15" height="15" fill="#ff6348" />
+
+              <rect x="275" y="150" width="12" height="12" fill="#ffa502" />
+              <rect x="290" y="148" width="12" height="12" fill="#ff6348" />
+              <rect x="305" y="152" width="12" height="12" fill="#ffa502" />
+              <rect x="320" y="148" width="12" height="12" fill="#ffed4e" />
+
+              <rect x="285" y="125" width="12" height="12" fill="#ffa502" />
+              <rect x="300" y="120" width="12" height="12" fill="#ffed4e" />
+              <rect x="315" y="123" width="12" height="12" fill="#ff6348" />
+            </motion.g>
+
+            {/* Glow effect */}
             <circle
-              cx="100"
-              cy="150"
-              r="80"
-              fill="url(#glowGradient)"
-              opacity="0.3"
+              cx="200"
+              cy="220"
+              r="150"
+              fill="url(#dragonGlowGradient)"
+              opacity="0.18"
             />
             <defs>
-              <linearGradient
-                id="baseGradient"
-                x1="0%"
-                y1="0%"
-                x2="0%"
-                y2="100%"
-              >
+              <radialGradient id="dragonGlowGradient">
                 <stop
                   offset="0%"
-                  style={{ stopColor: "#4a4a6a", stopOpacity: 1 }}
+                  style={{ stopColor: "#8b5cf6", stopOpacity: 0.6 }}
                 />
                 <stop
                   offset="100%"
-                  style={{ stopColor: "#2a2a3a", stopOpacity: 1 }}
-                />
-              </linearGradient>
-              <linearGradient
-                id="pedestalGradient"
-                x1="0%"
-                y1="0%"
-                x2="0%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#5a5a7a", stopOpacity: 1 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#3a3a5a", stopOpacity: 1 }}
-                />
-              </linearGradient>
-              <linearGradient
-                id="bodyGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#ff6b9d", stopOpacity: 0.8 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#c44569", stopOpacity: 0.9 }}
-                />
-              </linearGradient>
-              <linearGradient
-                id="bodyGradient2"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#ffa502", stopOpacity: 0.6 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#ff6b9d", stopOpacity: 0.8 }}
-                />
-              </linearGradient>
-              <linearGradient
-                id="headGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#00d4ff", stopOpacity: 0.8 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#0099ff", stopOpacity: 0.9 }}
-                />
-              </linearGradient>
-              <linearGradient
-                id="headGradient2"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#26de81", stopOpacity: 0.6 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#00d4ff", stopOpacity: 0.8 }}
-                />
-              </linearGradient>
-              <linearGradient
-                id="armGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#ffa502", stopOpacity: 0.7 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#ff6b9d", stopOpacity: 0.8 }}
-                />
-              </linearGradient>
-              <linearGradient
-                id="crownGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#ffa502", stopOpacity: 1 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#ff6348", stopOpacity: 1 }}
-                />
-              </linearGradient>
-              <radialGradient id="glowGradient">
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#ff6b9d", stopOpacity: 0.6 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#ff6b9d", stopOpacity: 0 }}
+                  style={{ stopColor: "#8b5cf6", stopOpacity: 0 }}
                 />
               </radialGradient>
             </defs>
           </svg>
+
+          {/* Small orbiting planets/pucks */}
+          <motion.div
+            animate={{ x: [0, 18, -18, 0], y: [0, -18, 18, 0] }}
+            transition={{ duration: 8, repeat: Infinity }}
+            style={{
+              position: "absolute",
+              width: "40px",
+              height: "40px",
+              background: "linear-gradient(135deg, #00d4ff 0%, #0099ff 100%)",
+              borderRadius: "50%",
+              boxShadow: "0 0 20px rgba(0, 212, 255, 0.5)",
+              top: "10%",
+              left: "15%",
+              zIndex: 6,
+              x: parallaxXSmall,
+              y: parallaxYSmall,
+            }}
+          />
+          <motion.div
+            animate={{ x: [0, -24, 24, 0], y: [0, 24, -24, 0] }}
+            transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+            style={{
+              position: "absolute",
+              width: "50px",
+              height: "50px",
+              background: "linear-gradient(135deg, #26de81 0%, #20bf6b 100%)",
+              borderRadius: "50%",
+              boxShadow: "0 0 25px rgba(38, 222, 129, 0.45)",
+              top: "15%",
+              right: "10%",
+              zIndex: 6,
+              x: parallaxXMed,
+              y: parallaxYMed,
+            }}
+          />
+          <motion.div
+            animate={{ x: [0, 22, -22, 0], y: [0, 22, -22, 0] }}
+            transition={{ duration: 9, repeat: Infinity, delay: 2 }}
+            style={{
+              position: "absolute",
+              width: "35px",
+              height: "35px",
+              background: "linear-gradient(135deg, #ffa502 0%, #ff6348 100%)",
+              borderRadius: "50%",
+              boxShadow: "0 0 20px rgba(255,165,2,0.45)",
+              bottom: "15%",
+              left: "10%",
+              zIndex: 6,
+              x: parallaxXSmall,
+              y: parallaxYSmall,
+            }}
+          />
+          <motion.div
+            animate={{ x: [0, -20, 20, 0], y: [0, -20, 20, 0] }}
+            transition={{ duration: 7, repeat: Infinity, delay: 0.5 }}
+            style={{
+              position: "absolute",
+              width: "30px",
+              height: "30px",
+              background: "linear-gradient(135deg, #ff6b9d 0%, #c44569 100%)",
+              borderRadius: "50%",
+              boxShadow: "0 0 15px rgba(255,107,157,0.45)",
+              bottom: "30%",
+              right: "15%",
+              zIndex: 6,
+              x: parallaxXSmall,
+              y: parallaxYSmall,
+            }}
+          />
         </motion.div>
 
-        {/* Floating Cards (use shared derived transforms to avoid subscription jitter) */}
+        {/* Floating Cards */}
         <motion.div
           variants={cardVariants(6, 0)}
           animate="animate"
@@ -543,56 +634,80 @@ const PremiumLandingPage = () => {
             position: "absolute",
             background: "rgba(255, 255, 255, 0.05)",
             backdropFilter: "blur(10px)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
+            border: "1px solid rgba(255, 255, 255, 0.08)",
             borderRadius: "16px",
-            padding: "2rem",
-            boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
-            width: "200px",
+            padding: "1.6rem",
+            width: "210px",
             height: "120px",
             top: "20%",
             right: "15%",
-            x: moveX12,
-            y: moveY12,
+            boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
+            x: parallaxXMed,
+            y: parallaxYMed,
+            zIndex: 7,
           }}
-        />
+        >
+          <Typography sx={{ color: "#fff", fontWeight: 700, mb: 0.5 }}>
+            Workflow
+          </Typography>
+          <Typography sx={{ color: "rgba(255,255,255,0.7)", fontSize: 13 }}>
+            Visual diagrams & steps
+          </Typography>
+        </motion.div>
         <motion.div
           variants={cardVariants(8, 1)}
           animate="animate"
           style={{
             position: "absolute",
-            background: "rgba(255, 255, 255, 0.05)",
-            backdropFilter: "blur(10px)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
+            background: "rgba(255, 255, 255, 0.04)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(255, 255, 255, 0.06)",
             borderRadius: "16px",
-            padding: "2rem",
-            boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
+            padding: "1.4rem",
             width: "180px",
             height: "100px",
             bottom: "25%",
             right: "25%",
-            x: moveX14,
-            y: moveY14,
+            boxShadow: "0 18px 40px rgba(0,0,0,0.32)",
+            x: parallaxXLarge,
+            y: parallaxYLarge,
+            zIndex: 7,
           }}
-        />
+        >
+          <Typography sx={{ color: "#fff", fontWeight: 700, mb: 0.5 }}>
+            Integrations
+          </Typography>
+          <Typography sx={{ color: "rgba(255,255,255,0.7)", fontSize: 13 }}>
+            APIs & connectors
+          </Typography>
+        </motion.div>
         <motion.div
           variants={cardVariants(7, 2)}
           animate="animate"
           style={{
             position: "absolute",
-            background: "rgba(255, 255, 255, 0.05)",
-            backdropFilter: "blur(10px)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
+            background: "rgba(255, 255, 255, 0.045)",
+            backdropFilter: "blur(9px)",
+            border: "1px solid rgba(255, 255, 255, 0.06)",
             borderRadius: "16px",
-            padding: "2rem",
-            boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
+            padding: "1.2rem",
             width: "160px",
             height: "90px",
             top: "55%",
             right: "10%",
-            x: moveX16,
-            y: moveY16,
+            boxShadow: "0 16px 34px rgba(0,0,0,0.30)",
+            x: parallaxXSmall,
+            y: parallaxYSmall,
+            zIndex: 7,
           }}
-        />
+        >
+          <Typography sx={{ color: "#fff", fontWeight: 700, mb: 0.5 }}>
+            Performance
+          </Typography>
+          <Typography sx={{ color: "rgba(255,255,255,0.7)", fontSize: 13 }}>
+            Metrics & SLAs
+          </Typography>
+        </motion.div>
 
         {/* Glowing Lines */}
         <motion.div
@@ -607,6 +722,7 @@ const PremiumLandingPage = () => {
             top: "30%",
             right: 0,
             opacity: 0.5,
+            zIndex: 3,
           }}
         />
         <motion.div
@@ -621,6 +737,7 @@ const PremiumLandingPage = () => {
             top: "60%",
             right: 0,
             opacity: 0.5,
+            zIndex: 3,
           }}
         />
         <motion.div
@@ -635,6 +752,7 @@ const PremiumLandingPage = () => {
             top: "80%",
             right: 0,
             opacity: 0.5,
+            zIndex: 3,
           }}
         />
 
@@ -648,10 +766,11 @@ const PremiumLandingPage = () => {
               position: "absolute",
               width: "4px",
               height: "4px",
-              background: "rgba(255, 255, 255, 0.5)",
+              background: "rgba(255, 255, 255, 0.6)",
               borderRadius: "50%",
-              left: `${20 + i * 10}%`,
+              left: `${12 + i * 9}%`,
               bottom: 0,
+              zIndex: 2,
             }}
           />
         ))}
@@ -660,4 +779,4 @@ const PremiumLandingPage = () => {
   );
 };
 
-export default PremiumLandingPage;
+export default DragonLandingPage;
