@@ -1,52 +1,58 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Box, Typography, Button, useTheme } from "@mui/material";
-import { motion } from "framer-motion";
-import { useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useRouter } from "next/navigation";
 
 const PremiumLandingPage = () => {
   const router = useRouter();
   const theme = useTheme();
-  const smoothMouseXMotion = useMotionValue(0);
-  const smoothMouseYMotion = useMotionValue(0);
 
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
-  const [targetX, setTargetX] = useState(0);
-  const [targetY, setTargetY] = useState(0);
+  // ── Motion values (single source of truth) ───────────────────────────────────
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
+  // spring smoothing (only smoothing layer)
+  const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 100, damping: 20 });
+
+  // Derived transforms (computed ONCE and reused)
+  const moveX20 = useTransform(springX, (x) => x * 20);
+  const moveY20 = useTransform(springY, (y) => y * 20);
+  const moveX18 = useTransform(springX, (x) => x * 18);
+  const moveY18 = useTransform(springY, (y) => y * 18);
+  const moveX22 = useTransform(springX, (x) => x * 22);
+  const moveY22 = useTransform(springY, (y) => y * 22);
+
+  const moveX12 = useTransform(springX, (x) => x * 12);
+  const moveY12 = useTransform(springY, (y) => y * 12);
+  const moveX14 = useTransform(springX, (x) => x * 14);
+  const moveY14 = useTransform(springY, (y) => y * 14);
+  const moveX16 = useTransform(springX, (x) => x * 16);
+  const moveY16 = useTransform(springY, (y) => y * 16);
+
+  // statue-specific transforms
+  const rotateY = useTransform(springX, [-1, 1], [-15, 15]);
+  const rotateX = useTransform(springY, [-1, 1], [15, -15]);
+  const statMoveX = useTransform(springX, [-1, 1], [-25, 25]);
+  const statMoveY = useTransform(springY, [-1, 1], [-25, 25]);
+
+  // ── Mouse listener updates motion values (no setState) ──────────────────────
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
-      setMouseX(x);
-      setMouseY(y);
+      mouseX.set(x);
+      mouseY.set(y);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    window.addEventListener("mousemove", handleMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, [mouseX, mouseY]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTargetX((prev) => {
-        const newX = prev + (mouseX - prev) * 0.15;
-        smoothMouseXMotion.set(newX);
-        return newX;
-      });
-      setTargetY((prev) => {
-        const newY = prev + (mouseY - prev) * 0.15;
-        smoothMouseYMotion.set(newY);
-        return newY;
-      });
-    }, 16);
-
-    return () => clearInterval(interval);
-  }, [mouseX, mouseY, smoothMouseXMotion, smoothMouseYMotion]);
-
+  // ── Variants ────────────────────────────────────────────────────────────────
   const floatVariants = {
     animate: {
       y: [0, -20, 0],
@@ -68,7 +74,7 @@ const PremiumLandingPage = () => {
         duration,
         delay,
         repeat: Infinity,
-        ease: "easeInOut" as const, // ✅ tells TS it’s a literal easing value
+        ease: "easeInOut" as const,
       },
     },
   });
@@ -113,6 +119,7 @@ const PremiumLandingPage = () => {
     },
   });
 
+  // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <Box
       sx={{
@@ -136,29 +143,6 @@ const PremiumLandingPage = () => {
           zIndex: 10,
         }}
       >
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Typography
-            sx={{
-              fontSize: "1.5rem",
-              fontWeight: 800,
-              background: "linear-gradient(135deg, #ff6b9d 0%, #c44569 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              marginBottom: "4rem",
-              letterSpacing: "-1px",
-            }}
-          >
-            BRAND
-          </Typography>
-        </motion.div>
-
-        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -174,27 +158,10 @@ const PremiumLandingPage = () => {
               letterSpacing: "-2px",
             }}
           >
-            Build the{" "}
-            <Box
-              component="span"
-              sx={{
-                background:
-                  "linear-gradient(135deg, #ff6b9d 0%, #ffa502 50%, #00d4ff 100%)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Future
-            </Box>
-            <br />
-            of Digital
-            <br />
-            Experiences
+            Welcome Onboard
           </Typography>
         </motion.div>
 
-        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -209,12 +176,14 @@ const PremiumLandingPage = () => {
               maxWidth: "500px",
             }}
           >
-            Transform your creative vision into reality with powerful tools and
-            stunning animations that bring your ideas to life.
+            This portal gives you direct access to live diagrams, workflows, and
+            real-time updates.
+            <br />
+            Login to validate changes, collaborate with teams, and stay in sync
+            with every milestone.
           </Typography>
         </motion.div>
 
-        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -283,7 +252,7 @@ const PremiumLandingPage = () => {
           }}
         />
 
-        {/* Orbs with smooth cursor tracking */}
+        {/* Orbs (use shared derived transforms) */}
         <motion.div
           variants={orbVariants(8, 0)}
           animate="animate"
@@ -297,8 +266,8 @@ const PremiumLandingPage = () => {
             opacity: 0.8,
             top: "10%",
             right: "20%",
-            x: useTransform(smoothMouseXMotion, (x) => x * 20),
-            y: useTransform(smoothMouseYMotion, (y) => y * 20),
+            x: moveX20,
+            y: moveY20,
           }}
         />
         <motion.div
@@ -314,8 +283,8 @@ const PremiumLandingPage = () => {
             opacity: 0.8,
             bottom: "15%",
             right: "10%",
-            x: useTransform(smoothMouseXMotion, (x) => x * 18),
-            y: useTransform(smoothMouseYMotion, (y) => y * 18),
+            x: moveX18,
+            y: moveY18,
           }}
         />
         <motion.div
@@ -331,12 +300,12 @@ const PremiumLandingPage = () => {
             opacity: 0.8,
             top: "50%",
             right: "40%",
-            x: useTransform(smoothMouseXMotion, (x) => x * 22),
-            y: useTransform(smoothMouseYMotion, (y) => y * 22),
+            x: moveX22,
+            y: moveY22,
           }}
         />
 
-        {/* Statue with smooth cursor tracking */}
+        {/* Statue (uses statue-specific derived transforms) */}
         <motion.div
           variants={floatVariants}
           animate="animate"
@@ -349,12 +318,15 @@ const PremiumLandingPage = () => {
             alignItems: "center",
             justifyContent: "center",
             filter: "drop-shadow(0 30px 60px rgba(255, 107, 157, 0.4))",
-            rotateY: useTransform(smoothMouseXMotion, (x) => x * 45),
-            rotateX: useTransform(smoothMouseYMotion, (y) => -y * 45),
-            x: useTransform(smoothMouseXMotion, (x) => x * 40),
-            y: useTransform(smoothMouseYMotion, (y) => y * 40),
+            rotateY,
+            rotateX,
+            x: statMoveX,
+            y: statMoveY,
+            transformStyle: "preserve-3d",
           }}
+          transition={{ type: "spring", stiffness: 80, damping: 15 }}
         >
+          {/* SVG statue (unchanged) */}
           <svg
             viewBox="0 0 200 300"
             xmlns="http://www.w3.org/2000/svg"
@@ -364,7 +336,6 @@ const PremiumLandingPage = () => {
               filter: "drop-shadow(0 10px 30px rgba(0, 212, 255, 0.3))",
             }}
           >
-            {/* Base */}
             <rect
               x="60"
               y="260"
@@ -373,14 +344,10 @@ const PremiumLandingPage = () => {
               fill="url(#baseGradient)"
               rx="4"
             />
-
-            {/* Pedestal */}
             <path
               d="M 70 260 L 80 220 L 120 220 L 130 260 Z"
               fill="url(#pedestalGradient)"
             />
-
-            {/* Statue Body */}
             <ellipse
               cx="100"
               cy="180"
@@ -395,12 +362,8 @@ const PremiumLandingPage = () => {
               ry="35"
               fill="url(#bodyGradient2)"
             />
-
-            {/* Statue Head */}
             <circle cx="100" cy="120" r="25" fill="url(#headGradient)" />
             <circle cx="100" cy="115" r="23" fill="url(#headGradient2)" />
-
-            {/* Arms */}
             <ellipse
               cx="70"
               cy="170"
@@ -417,15 +380,11 @@ const PremiumLandingPage = () => {
               fill="url(#armGradient)"
               transform="rotate(20 130 170)"
             />
-
-            {/* Crown/Top */}
             <path
               d="M 85 105 L 100 85 L 115 105 Z"
               fill="url(#crownGradient)"
             />
             <circle cx="100" cy="88" r="6" fill="#ffa502" />
-
-            {/* Glow effect */}
             <circle
               cx="100"
               cy="150"
@@ -433,8 +392,6 @@ const PremiumLandingPage = () => {
               fill="url(#glowGradient)"
               opacity="0.3"
             />
-
-            {/* Gradients */}
             <defs>
               <linearGradient
                 id="baseGradient"
@@ -452,7 +409,6 @@ const PremiumLandingPage = () => {
                   style={{ stopColor: "#2a2a3a", stopOpacity: 1 }}
                 />
               </linearGradient>
-
               <linearGradient
                 id="pedestalGradient"
                 x1="0%"
@@ -469,7 +425,6 @@ const PremiumLandingPage = () => {
                   style={{ stopColor: "#3a3a5a", stopOpacity: 1 }}
                 />
               </linearGradient>
-
               <linearGradient
                 id="bodyGradient"
                 x1="0%"
@@ -486,7 +441,6 @@ const PremiumLandingPage = () => {
                   style={{ stopColor: "#c44569", stopOpacity: 0.9 }}
                 />
               </linearGradient>
-
               <linearGradient
                 id="bodyGradient2"
                 x1="0%"
@@ -503,7 +457,6 @@ const PremiumLandingPage = () => {
                   style={{ stopColor: "#ff6b9d", stopOpacity: 0.8 }}
                 />
               </linearGradient>
-
               <linearGradient
                 id="headGradient"
                 x1="0%"
@@ -520,7 +473,6 @@ const PremiumLandingPage = () => {
                   style={{ stopColor: "#0099ff", stopOpacity: 0.9 }}
                 />
               </linearGradient>
-
               <linearGradient
                 id="headGradient2"
                 x1="0%"
@@ -537,7 +489,6 @@ const PremiumLandingPage = () => {
                   style={{ stopColor: "#00d4ff", stopOpacity: 0.8 }}
                 />
               </linearGradient>
-
               <linearGradient
                 id="armGradient"
                 x1="0%"
@@ -554,7 +505,6 @@ const PremiumLandingPage = () => {
                   style={{ stopColor: "#ff6b9d", stopOpacity: 0.8 }}
                 />
               </linearGradient>
-
               <linearGradient
                 id="crownGradient"
                 x1="0%"
@@ -571,7 +521,6 @@ const PremiumLandingPage = () => {
                   style={{ stopColor: "#ff6348", stopOpacity: 1 }}
                 />
               </linearGradient>
-
               <radialGradient id="glowGradient">
                 <stop
                   offset="0%"
@@ -586,7 +535,7 @@ const PremiumLandingPage = () => {
           </svg>
         </motion.div>
 
-        {/* Floating Cards with smooth cursor tracking */}
+        {/* Floating Cards (use shared derived transforms to avoid subscription jitter) */}
         <motion.div
           variants={cardVariants(6, 0)}
           animate="animate"
@@ -602,8 +551,8 @@ const PremiumLandingPage = () => {
             height: "120px",
             top: "20%",
             right: "15%",
-            x: useTransform(smoothMouseXMotion, (x) => x * 12),
-            y: useTransform(smoothMouseYMotion, (y) => y * 12),
+            x: moveX12,
+            y: moveY12,
           }}
         />
         <motion.div
@@ -621,8 +570,8 @@ const PremiumLandingPage = () => {
             height: "100px",
             bottom: "25%",
             right: "25%",
-            x: useTransform(smoothMouseXMotion, (x) => x * 14),
-            y: useTransform(smoothMouseYMotion, (y) => y * 14),
+            x: moveX14,
+            y: moveY14,
           }}
         />
         <motion.div
@@ -640,8 +589,8 @@ const PremiumLandingPage = () => {
             height: "90px",
             top: "55%",
             right: "10%",
-            x: useTransform(smoothMouseXMotion, (x) => x * 16),
-            y: useTransform(smoothMouseYMotion, (y) => y * 16),
+            x: moveX16,
+            y: moveY16,
           }}
         />
 
