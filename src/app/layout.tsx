@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { FRONTEND_SALE_SITE_BASE_URL } from "@/Config";
+import EmotionCacheProvider from "@/components/emotion-cache";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -10,8 +11,7 @@ const outfit = Outfit({
 });
 export const metadata: Metadata = {
   title: "Meta Title",
-  description:
-    "Meta Description",
+  description: "Meta Description",
   icons: {
     icon: [
       { rel: "icon", url: "/favicon.ico", type: "image/x-icon" },
@@ -37,8 +37,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Meta Title",
-    description:
-      "Meta Description",
+    description: "Meta Description",
     url: `${FRONTEND_SALE_SITE_BASE_URL}`,
     type: "website",
     images: [
@@ -60,7 +59,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.className}`}>{children}</body>
+      <body className={`${outfit.className}`}>
+        <EmotionCacheProvider>{children}</EmotionCacheProvider>
+      </body>
     </html>
   );
 }

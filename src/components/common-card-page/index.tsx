@@ -30,11 +30,20 @@ interface CommonCardPageProps {
   fontSize?: string;
 }
 
-// Function to generate random light colors
-const generateLightColor = () => {
-  const hue = Math.floor(Math.random() * 360);
-  const saturation = Math.floor(Math.random() * 40) + 20; // 40-75%
-  const lightness = Math.floor(Math.random() * 18) + 80; // 58-73%
+// Function to generate deterministic light colors based on a seed
+const generateLightColor = (seed: string) => {
+  // Simple hash function to convert string to number
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    const char = seed.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+
+  // Use hash to generate deterministic values
+  const hue = Math.abs(hash % 360);
+  const saturation = Math.abs(hash % 40) + 20; // 20-60%
+  const lightness = Math.abs((hash >> 8) % 18) + 80; // 80-98%
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 };
 
@@ -46,9 +55,12 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
 }) => {
   const router = useRouter();
 
-  // Generate stable random colors for each card
+  // Generate stable deterministic colors for each card based on card title and index
+  // This ensures colors are consistent between server and client renders
   const cardColors = useMemo(() => {
-    return cards.map(() => generateLightColor());
+    return cards.map((card, index) =>
+      generateLightColor(`${card.title}-${index}`)
+    );
   }, [cards]);
 
   const onBackIconClick = useCallback(() => {
