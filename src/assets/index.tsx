@@ -23,3 +23,9 @@ export { default as Card5Image } from "./mainTestLogo.svg";
 export { default as Card6Image } from "./mainTestLogo.svg";
 export { default as Card7Image } from "./mainTestLogo.svg";
 export { default as Card8Image } from "./mainTestLogo.svg";
+
+export { default as img1CryptoImage } from "./img1CryptoImage.svg";
+export { default as img2CryptoImage } from "./img2CryptoImage.svg";
+export { default as img3CryptoImage } from "./img3CryptoImage.svg";
+export { default as img4CryptoImage } from "./img4CryptoImage.svg";
+
