@@ -168,7 +168,7 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                     position: "absolute",
                     top: 0,
                     right: 0,
-                    backgroundColor: "rgba(188, 61, 2, 0.5)",
+                    backgroundColor: card.data ? "#90EEBF" : "#EE9090",
                     color: "white",
                     fontSize: "0.875rem",
                     height: "32px",
