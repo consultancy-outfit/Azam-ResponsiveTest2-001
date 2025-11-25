@@ -26,27 +26,27 @@ const CryptoPage = () => {
     {
       title: "Common API Reference",
       image: img2CryptoImagev1,
-      route: "/",
+      route: "/common-api-reference",
     },
     {
       title: "Reference and Market Data API",
       image: img3CryptoImagev1,
-      route: "/",
+      route: "/reference-market-data-api",
     },
     {
       title: "Account Balance and Position API",
       image: img4CryptoImagev1,
-      route: "/",
+      route: "/account-balance-position-api",
     },
     {
       title: "Trading API",
       image: img5CryptoImagev1,
-      route: "/",
+      route: "/trading-api",
     },
     {
       title: "Advanced Order Management API",
       image: img6CryptoImagev1,
-      route: "/",
+      route: "/advanced-order-management-api",
     },
     {
       title: "Order, Trade, Transaction History API",

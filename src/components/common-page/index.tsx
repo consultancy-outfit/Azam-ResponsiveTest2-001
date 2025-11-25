@@ -11,6 +11,7 @@ interface CommonPageProps {
   backRoute?: string;
   pageTitle: string;
   onChange?: (selectedValue: string, page: string) => void;
+  subPageTitle?: string;
 }
 
 const CommonPage: React.FC<CommonPageProps> = ({
@@ -18,6 +19,7 @@ const CommonPage: React.FC<CommonPageProps> = ({
   backRoute = "/",
   pageTitle,
   onChange,
+  subPageTitle,
 }) => {
   const router = useRouter();
 
@@ -52,6 +54,17 @@ const CommonPage: React.FC<CommonPageProps> = ({
           {pageTitle}
         </Typography>
       </Stack>
+      <Typography
+        variant="h5"
+        color="#5A5867"
+        fontSize={{ xs: "0.8rem", sm: "18px", md: "22px" }}
+        fontWeight={{ md: 600, xs: 500 }}
+        ml={{ md: 2, xs: 1 }}
+        sx={{ fontFamily: "inherit" }}
+        my={2}
+      >
+        {subPageTitle}
+      </Typography>
       <Box mb={{ md: 4, sm: 3, xs: 2 }}>
         <CheckboxForm onChange={onChange} />
       </Box>
