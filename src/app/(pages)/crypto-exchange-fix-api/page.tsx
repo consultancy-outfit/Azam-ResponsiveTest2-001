@@ -45,7 +45,7 @@ import {
       {
         title: "Overview",
         image: img3CryptoImage,
-        route: "/",
+        route: "/overview-crypto-fix-api",
         data: true,
       },
       {
