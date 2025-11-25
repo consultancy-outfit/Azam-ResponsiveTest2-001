@@ -7,7 +7,10 @@ const indexTsxPath = path.join(assetsDir, "index.tsx");
 
 const pages = [
     
-{ name: "product test page", backRoute: "/testroute" }
+{ name: "project-tracker1", backRoute: "/project-tracker" },
+{ name: "project-tracker2", backRoute: "/project-tracker" },
+{ name: "project-tracker3", backRoute: "/project-tracker" },
+{ name: "project-tracker4", backRoute: "/project-tracker" },
 
 ];
 
