@@ -31,12 +31,13 @@ export { default as img4CryptoImage } from "./img4CryptoImage.svg";
 export { default as overviewFixApi } from "./overviewFixApi.svg";
 export { default as fixApiChangeLogs } from "./fixApiChangeLogs.svg";
 export { default as fixApi } from "./fixApi.svg";
-export { default as fixApiSessionManagement} from "./fixSessionManagement.svg";
-export { default as fixApiGenerate } from "./generateFixApi.svg"
-export { default as RateLimit } from "./ratelimit.svg"
-export { default as fixdirection } from "./fixdirection.svg"
-export { default as endingsession } from "./endingSession.svg"
-export { default as endpoint } from "./fixendpoint.svg"
-export { default as fixConnectivity } from "./fixConnectivity.svg"
-
-
+export { default as fixApiSessionManagement } from "./fixSessionManagement.svg";
+export { default as fixApiGenerate } from "./generateFixApi.svg";
+export { default as RateLimit } from "./ratelimit.svg";
+export { default as fixdirection } from "./fixdirection.svg";
+export { default as endingsession } from "./endingSession.svg";
+export { default as endpoint } from "./fixendpoint.svg";
+export { default as fixConnectivity } from "./fixConnectivity.svg";
+export { default as Section } from "./Section.svg";
+export { default as privateGetOrderHistoryRequest } from "./privateGetOrderHistoryRequest.svg";
+export { default as privateGetOrderHistoryResponse } from "./privateGetOrderHistoryResponse.svg";
