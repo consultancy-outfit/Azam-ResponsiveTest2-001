@@ -16,11 +16,10 @@ const FiatDevelopersAPIReferencePaymentsPlatform14Page = () => {
   const areas = [
     {
       id: "scrypt-api-page1",
-      x: 920,
-      y: 45,
-      width: 250,
-      height: 10,
-
+      x: 1300,
+      y: 40,
+      width: 370,
+      height: 15,
       link: "/fiat-developers-api-reference-payments-platform-1-4-111-Individual-end-user-object",
     },
     // {
