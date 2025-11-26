@@ -33,6 +33,12 @@ const RegistrationScopePage = () => {
       route: "/crypto",
       data: true,
     },
+    {
+      title: "Open Payd",
+      image: CardFourImage,
+      route: "/open-payd",
+      data: true,
+    },
   ];
 
   return (

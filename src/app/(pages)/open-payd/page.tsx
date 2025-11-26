@@ -101,7 +101,7 @@ const OpenPaydPage = () => {
     <CommonCardPage
       pageTitle="OpenPayd(API Reference)"
       cards={cards}
-      backRoute={"/"}
+      backRoute={"/registration-scope"}
     />
   );
 };
