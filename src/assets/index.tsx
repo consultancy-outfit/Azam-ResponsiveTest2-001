@@ -166,17 +166,9 @@ export { default as paymentsPlatformCard2 } from "./paymentsPlatformCard2.svg";
 export { default as paymentsPlatformCard3 } from "./paymentsPlatformCard3.svg";
 export { default as paymentsPlatformCard4 } from "./paymentsPlatformCard4.svg";
 
-
-
-
-
-
-
-
 // images for project-tracker-page.tsx
 export { default as img1ScopeOfRegistrationImage1 } from "./img1ScopeOfRegistrationImage1.svg";
 export { default as img1ScopeOfRegistrationImage2 } from "./img1ScopeOfRegistrationImage2.svg";
-
 
 export { default as ProjectTracker1Image } from "./ProjectTracker1Image.svg";
 export { default as ProjectTracker2Image } from "./ProjectTracker2Image.svg";
@@ -197,7 +189,6 @@ export { default as ScryptApi9Image } from "./ScryptApi9Image.svg";
 export { default as ScryptApi10Image } from "./ScryptApi10Image.svg";
 export { default as ScryptApi11Image } from "./ScryptApi11Image.svg";
 export { default as ScryptApi12Image } from "./ScryptApi12Image.svg";
-
 
 export { default as ScryptApi1 } from "./ScryptApi1.svg";
 export { default as ScryptApi2 } from "./ScryptApi2.svg";
@@ -226,7 +217,6 @@ export { default as SecurityMaster2Image } from "./SecurityMaster2Image.svg";
 export { default as MarketData1Image } from "./MarketData1Image.svg";
 export { default as MarketData2Image } from "./MarketData2Image.svg";
 
-
 export { default as Orders1Image } from "./Orders1Image.svg";
 export { default as Orders2Image } from "./Orders2Image.svg";
 export { default as Orders3Image } from "./Orders3Image.svg";
@@ -238,7 +228,6 @@ export { default as MarketDataPage1Image } from "./MarketDataPage1Image.svg";
 export { default as MarketDataPage2Image } from "./MarketDataPage2Image.svg";
 export { default as MarketDataPage3Image } from "./MarketDataPage3Image.svg";
 export { default as MarketDataPage4Image } from "./MarketDataPage4Image.svg";
-
 
 export { default as Trade1Image } from "./Trade1Image.svg";
 
@@ -264,14 +253,13 @@ export { default as img4CryptoImage } from "./img4CryptoImage.svg";
 export { default as overviewFixApi } from "./overviewFixApi.svg";
 export { default as fixApiChangeLogs } from "./fixApiChangeLogs.svg";
 export { default as fixApi } from "./fixApi.svg";
-export { default as fixApiSessionManagement} from "./fixSessionManagement.svg";
-export { default as fixApiGenerate } from "./generateFixApi.svg"
-export { default as RateLimit } from "./ratelimit.svg"
-export { default as fixdirection } from "./fixdirection.svg"
-export { default as endingsession } from "./endingSession.svg"
-export { default as endpoint } from "./fixendpoint.svg"
-export { default as fixConnectivity } from "./fixConnectivity.svg"
-
+export { default as fixApiSessionManagement } from "./fixSessionManagement.svg";
+export { default as fixApiGenerate } from "./generateFixApi.svg";
+export { default as RateLimit } from "./ratelimit.svg";
+export { default as fixdirection } from "./fixdirection.svg";
+export { default as endingsession } from "./endingSession.svg";
+export { default as endpoint } from "./fixendpoint.svg";
+export { default as fixConnectivity } from "./fixConnectivity.svg";
 
 export { default as img1CryptoImagev1 } from "./img1CryptoImagev1.svg";
 export { default as img2CryptoImagev1 } from "./img2CryptoImagev1.svg";
@@ -334,3 +322,20 @@ export { default as tradingapisubsec1Image9 } from "./tradingapisubsec1Image9.sv
 export { default as tradingapisubsec1Image10 } from "./tradingapisubsec1Image10.svg";
 export { default as tradingapisubsec1Image11 } from "./tradingapisubsec1Image11.svg";
 export { default as tradingapisubsec1Image12 } from "./tradingapisubsec1Image12.svg";
+
+export { default as TokenizeImageMain } from "./TokenizeImageMain.svg";
+export { default as TokenizeRequestAttributesImage1 } from "./TokenizeRequestAttributesImage1.svg";
+export { default as TokenizeRequestAttributesImage2 } from "./TokenizeRequestAttributesImage2.svg";
+
+export { default as EntityRegistrantsImage } from "./EntityRegistrantsImage.svg";
+export { default as EntityRegistrantsImageSec1 } from "./EntityRegistrantsImageSec1.svg";
+export { default as EntityRegistrantsImageSec2 } from "./EntityRegistrantsImageSec2.svg";
+export { default as EntityRegistrantsImageSec3 } from "./EntityRegistrantsImageSec3.svg";
+
+export { default as payinImageMain } from "./payinImageMain.svg";
+export { default as payinSecImage1 } from "./payinSecImage1.svg";
+export { default as payinSecImage2 } from "./payinSecImage2.svg";
+export { default as payinSecImage3 } from "./payinSecImage3.svg";
+export { default as payinSecImage4 } from "./payinSecImage4.svg";
+export { default as payinSecImage5 } from "./payinSecImage5.svg";
+
