@@ -4,10 +4,9 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { CommonAPIReferenceImage } from "@/assets";
 import { useMediaQuery } from "@mui/system";
-import { MultiBackIcon } from "@/assets/common-assets";
+import { CommonBackIcon, MultiBackIcon } from "@/assets/common-assets";
 
 const ImageMap = () => {
   const router = useRouter();
@@ -77,7 +76,7 @@ const ImageMap = () => {
       >
         <Stack flexDirection="row" alignItems="center" mt={5}>
           <Image
-            src={MultiBackIcon}
+            src={CommonBackIcon}
             alt="back"
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}

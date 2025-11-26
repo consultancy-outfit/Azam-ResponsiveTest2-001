@@ -4,14 +4,13 @@ import Image from "next/image";
 import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { CheckboxForm } from "@/components/checkbox-form";
-import { MultiBackIcon } from "@/assets/common-assets";
+import { CommonBackIcon } from "@/assets/common-assets";
 import { useMediaQuery } from "@mui/system";
 import { advancedordermanagementapiMain } from "@/assets";
 
 const ImageMap = () => {
   const router = useRouter();
   const [containerWidth, setContainerWidth] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const updateSize = () => {
@@ -49,12 +48,6 @@ const ImageMap = () => {
     router.push("/crypto-com-exchange-api-v1");
   }, [router]);
 
-  const toggleDropdown = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsOpen((prev) => !prev);
-  }, []);
-
-  // Areas data from your SVG
   const areas = [
     {
       id: 8,
@@ -162,7 +155,7 @@ const ImageMap = () => {
       >
         <Stack flexDirection="row" alignItems="center" mt={5}>
           <Image
-            src={MultiBackIcon}
+            src={CommonBackIcon}
             alt="back"
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}
@@ -186,7 +179,6 @@ const ImageMap = () => {
         <CheckboxForm />
       </Box>
 
-      {/* Image with clickable areas */}
       <Box
         id="image-map-container"
         sx={{ position: "relative", width: "100%" }}

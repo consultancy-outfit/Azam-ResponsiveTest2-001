@@ -3,10 +3,9 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { ReferenceMarketDataAPIImage } from "@/assets";
 import { CheckboxForm } from "@/components/checkbox-form";
-import { colorLegends, MultiBackIcon } from "@/assets/common-assets";
+import { CommonBackIcon } from "@/assets/common-assets";
 import { useMediaQuery } from "@mui/system";
 
 const ReferenceMarketDataApi = () => {
@@ -147,7 +146,7 @@ const ReferenceMarketDataApi = () => {
         {/* Back Icon + Title */}
         <Stack flexDirection="row" alignItems="center" mt={5}>
           <Image
-            src={MultiBackIcon}
+            src={CommonBackIcon}
             alt="back"
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}

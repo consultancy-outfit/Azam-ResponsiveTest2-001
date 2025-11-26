@@ -1,39 +1,3 @@
-// "use client";
-// import { MultiPathPage } from "@/components";
-// import {
-//   img1CryptoImage,
-//   img2CryptoImage
-// } from "@/assets";
-// import React from "react";
-// import MultiPathPageNoBackRoute from "@/components/multi-path-page-no-back-route/page";
-
-// const CryptoPageData = [
-//   {
-//     key: "crypto-1",
-//     link: "/crypto-exchange-fix-api",
-//     icon: img1CryptoImage,
-//     title: "Exchange FIX API",
-//   },
-//   {
-//     key: "crypto-2",
-//     link: "/crypto-comexchange-api-v1",
-//     icon: img2CryptoImage,
-//     title: "Exchange API V1",
-//   }
-// ];
-
-// const CryptoPage = () => {
-//   return (
-//     <MultiPathPageNoBackRoute
-//       arrayData={CryptoPageData}
-//       pageTitle="Crypto"
-//     />
-//   );
-// };
-
-// export default CryptoPage;
-
-
 import {
   img1CryptoImage,
   img2CryptoImage,
