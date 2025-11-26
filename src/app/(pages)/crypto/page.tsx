@@ -52,7 +52,7 @@ const CryptoPage = () => {
     {
       title: "Exchange API V1",
       image: img2CryptoImage,
-      route: "/crypto-comexchange-api-v1",
+      route: "/crypto-com-exchange-api-v1",
     },
   ];
 
