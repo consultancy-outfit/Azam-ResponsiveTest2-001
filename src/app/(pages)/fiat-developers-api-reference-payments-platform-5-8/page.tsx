@@ -185,7 +185,7 @@ const FiatDevelopersAPIReferencePaymentsPlatform58Page = () => {
             onMouseEnter={() => setHoveredArea(area.id)}
             onMouseLeave={() => setHoveredArea(null)}
             title={area.title}
-            border={"1px solid red"}
+            // border={"1px solid red"}
           />
         ))}
       </Paper>
