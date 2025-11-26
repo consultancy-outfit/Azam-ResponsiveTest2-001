@@ -28,9 +28,10 @@ const RegistrationScopePage = () => {
       data: true,
     },
     {
-      title: "Card Four",
+      title: "Crypto",
       image: CardFourImage,
-      route: "/yet-another-page",
+      route: "/crypto",
+      data: true,
     },
   ];
 

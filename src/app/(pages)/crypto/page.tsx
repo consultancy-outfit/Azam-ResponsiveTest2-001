@@ -60,7 +60,7 @@ const CryptoPage = () => {
     <CommonCardPage
       pageTitle="Crypto"
       cards={cards}
-      backRoute={"/"}
+      backRoute={"/registration-scope"}
     />
   );
 };

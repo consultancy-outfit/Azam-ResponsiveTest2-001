@@ -49,9 +49,9 @@ const ScopeOfRegistrationPageData: CardItem[] = [
 const ProjectTrackerPage = () => {
   return (
     <CommonCardPage
-    pageTitle="Registration Scope"
+    pageTitle="Project Tracker"
     cards={ScopeOfRegistrationPageData}
-    backRoute={"/"}
+    backRoute={"/registration-scope"}
   />
   );
 };
