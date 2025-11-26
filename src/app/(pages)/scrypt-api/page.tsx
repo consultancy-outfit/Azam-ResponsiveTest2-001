@@ -112,6 +112,13 @@ const ScopeOfRegistrationPageData: CardItem[] = [
     title: "Schemas",
     data: true,
   },
+  {
+   
+    route: "/scrypt-api12",
+    image: ScryptApi12Image,
+    title: "Open ",
+    data: true,
+  },
 ];
 
 const ScryptApiPage = () => {
@@ -119,7 +126,7 @@ const ScryptApiPage = () => {
     <CommonCardPage
     pageTitle="Scrypt API 1.0.0"
     cards={ScopeOfRegistrationPageData}
-    backRoute={"/"}
+    backRoute={"/registration-scope"}
   />
   );
 };

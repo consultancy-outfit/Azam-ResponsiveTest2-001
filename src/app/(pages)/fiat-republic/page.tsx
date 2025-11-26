@@ -53,7 +53,7 @@ import {
       <CommonCardPage
         pageTitle="Fiat Republic"
         cards={cards}
-        backRoute={"/fiat-republic"}
+        backRoute={"/registration-scope"}
       />
     );
   };
