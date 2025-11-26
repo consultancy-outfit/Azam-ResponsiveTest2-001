@@ -10,8 +10,8 @@ const outfit = Outfit({
   variable: "--font-outfit",
 });
 export const metadata: Metadata = {
-  title: "Meta Title",
-  description: "Meta Description",
+  title: "Cosmonyx Insights",
+  description: "Powering the Future of Digital Finance",
   icons: {
     icon: [
       { rel: "icon", url: "/favicon.ico", type: "image/x-icon" },
@@ -36,17 +36,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Meta Title",
-    description: "Meta Description",
-    url: `${FRONTEND_SALE_SITE_BASE_URL}`,
+    title: "Cosmonyx Insights", 
+    description: "Powering the Future of Digital Finance",
+    url: `Cosmonyx.netlify.app`,
     type: "website",
     images: [
       {
-        url: `${FRONTEND_SALE_SITE_BASE_URL}/og.png`,
+        url: `https://Cosmonyx.netlify.app/og.png`,
         type: "image/png",
         width: 1200,
         height: 630,
-        alt: "Railsr",
+        alt: "Cosmonyx Insights",
       },
     ],
   },

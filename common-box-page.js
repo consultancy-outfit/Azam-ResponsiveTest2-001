@@ -2,16 +2,14 @@ import fs from "fs";
 import path from "path";
 
 // === CONFIG ===
-const mainTitle = "SHS Required Licenses DBS"; // <- change this only
+const mainTitle = "Fiat Republic"; // <- change this only
 const itemTitles = [
-   "Purpose Of Product Certification",
-   "Where To Apply",
-   "Eligibility Criteria",
-   "Application Process",
-   "Required Documents",
-   "Cost Breakdown",
-   "Timeline For Certification",
-   "Validity Of The Certificate",
+  "Overview",
+  "Services",
+  "Crypto Platforms",
+  "Banking Partners",
+  "Developers",
+  "About Us",
 ];
 const bgColor = "#16853F";
 

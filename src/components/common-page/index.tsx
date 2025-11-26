@@ -1,5 +1,5 @@
 "use client";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -11,12 +11,15 @@ interface CommonPageProps {
   backRoute?: string;
   pageTitle: string;
   onChange?: (selectedValue: string, page: string) => void;
+  subPageTitle?: string;
+  showBtn?: boolean;
 }
 
 const CommonPage: React.FC<CommonPageProps> = ({
   src,
   backRoute = "/",
   pageTitle,
+  showBtn = false,
   onChange,
   subPageTitle,
 }) => {
@@ -31,36 +34,62 @@ const CommonPage: React.FC<CommonPageProps> = ({
       <Stack
         flexDirection="row"
         alignItems="center"
-        mt={{ md: 2, xs: 1 }}
-        mb={{ md: 4, sm: 3, xs: 2 }}
+        justifyContent="space-between"
       >
-        <Image
-          src={CommonBackIcon}
-          alt={pageTitle}
-          width={40}
-          height={40}
-          onClick={onBackIconClick}
-          style={{ cursor: "pointer" }}
-        />
-        <Typography
-          variant="h5"
-          color="#5A5867"
-          fontSize={{ xs: "0.8rem", sm: "18px", md: "22px" }}
-          fontWeight={{ md: 600, xs: 500 }}
-          ml={{ md: 2, xs: 1 }}
-          sx={{ fontFamily: "inherit" }}
+        <Stack
+          flexDirection="row"
+          alignItems="center"
+          mt={{ md: 2, xs: 1 }}
+          mb={{ md: 4, sm: 3, xs: 2 }}
         >
-          {pageTitle}
-        </Typography>
+          <Image
+            src={CommonBackIcon}
+            alt={pageTitle}
+            width={40}
+            height={40}
+            onClick={onBackIconClick}
+            style={{ cursor: "pointer" }}
+          />
+          <Typography
+            variant="h5"
+            color="#5A5867"
+            fontSize={{ xs: "0.8rem", sm: "18px", md: "22px" }}
+            fontWeight={{ md: 600, xs: 500 }}
+            ml={{ md: 2, xs: 1 }}
+            sx={{ fontFamily: "inherit" }}
+          >
+            {pageTitle}
+          </Typography>
+        </Stack>
+        {showBtn && (
+          <Button
+            sx={{
+              backgroundColor: "#5A5867",
+              borderRadius: "6px",
+              color: "#FFFFFF",
+              "&:hover": { backgroundColor: "#4A4857" },
+              cursor: "pointer",
+              fontSize: { xs: "0.7rem", sm: "0.9rem", md: "1rem" },
+              padding: { xs: "6px 12px", md: "8px 16px" },
+              textTransform: "capitalize",
+              fontFamily: "Outfit, inherit",
+            }}
+            variant="contained"
+            color="primary"
+            onClick={() => router.push("/sequence-page")}
+          >
+            Sequence
+          </Button>
+        )}
       </Stack>
       <Typography
         variant="h5"
         color="#5A5867"
-        fontSize={{ xs: "1rem", sm: "24px", md: "28px" }}
+        fontSize={{ xs: "0.8rem", sm: "18px", md: "22px" }}
         fontWeight={{ md: 600, xs: 500 }}
         ml={{ md: 2, xs: 1 }}
-        mb={{ sm: 3, xs: 2 }}
         sx={{ fontFamily: "inherit" }}
+        my={2}
       >
         {subPageTitle}
       </Typography>
