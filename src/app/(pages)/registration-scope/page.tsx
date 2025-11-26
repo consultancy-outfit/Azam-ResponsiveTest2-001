@@ -3,6 +3,7 @@ import {
   CardTwoImage,
   CardThreeImage,
   CardFourImage,
+  CardfiveImage
 } from "@/assets";
 import CommonCardPage from "@/components/common-card-page";
 import React from "react";
@@ -35,7 +36,7 @@ const RegistrationScopePage = () => {
     },
     {
       title: "Open Payd",
-      image: CardFourImage,
+      image: CardfiveImage,
       route: "/open-payd",
       data: true,
     },

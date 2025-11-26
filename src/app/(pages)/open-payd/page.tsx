@@ -1,8 +1,4 @@
 import {
-  CardOneImage,
-  CardTwoImage,
-  CardThreeImage,
-  CardFourImage,
   OpenPayd1Image,
   OpenPayd12Image,
   OpenPayd11Image,
