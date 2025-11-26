@@ -45,13 +45,13 @@ import {
       {
         title: "Overview",
         image: img3CryptoImage,
-        route: "/",
+        route: "/overview-crypto-fix-api",
         data: true,
       },
       {
         title: "FIX Messages",
         image: img4CryptoImage,
-        route: "/",
+        route: "",
       },
     ];
   
@@ -59,6 +59,7 @@ import {
       <CommonCardPage
         pageTitle="Crypto.com Exchange FIX API"
         cards={cards}
+        backRoute={"/crypto"}
       />
     );
   };
