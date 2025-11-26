@@ -6,20 +6,25 @@ const assetsDir = path.join(__dirname, "src", "assets");
 
 const pages = [
   {
-    title: "Scope of registration",
-    pageTitle: "Scope of registration",
-    imageCount: 3,
-    links: ["item-one", "item-two"],
-    titles: ["First Item", "Second Item"],
-    backRoute: "some-previous-page", 
-  },
-  {
-    title: "Another Main Section",
-    pageTitle: "Another Overview Page",
+    title: "crypto-comexchange-api-v1",
+    pageTitle: "Crypto.com Exchange API v1",
     imageCount: 2,
-    links: ["item-one", "item-two"],
-    titles: ["First Item", "Second Item"],
-    backRoute: "helo see sample page ",
+    links: [
+      "Introduction", 
+      "Common API Reference",
+      "Reference and Market Data API",
+      "Account Balance and Position API",
+      "Trading API",
+      "Advanced Order Management API",
+      "Order, Trade, Transaction History API",
+      "Wallet API",
+      "Fiat Wallet API",
+      "Staking API",
+      "Websocket Subscriptions",
+      "Common Issues"
+    ],
+    titles: ["Exchange FIX API", "Exchange API V1"],
+    backRoute: "some-previous-page", 
   },
   
  
