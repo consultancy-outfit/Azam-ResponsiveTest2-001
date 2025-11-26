@@ -43,7 +43,7 @@ const ImageMap = () => {
             ml={2}
           >
             Introduction
-          </Typography>
+          </Typography> 
         </Stack>
       </Stack>
 
