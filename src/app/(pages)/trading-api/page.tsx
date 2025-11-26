@@ -6,7 +6,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { TradingAPIImage } from "@/assets";
 import { CheckboxForm } from "@/components/checkbox-form";
-import { MultiBackIcon } from "@/assets/common-assets";
+import { CommonBackIcon } from "@/assets/common-assets";
 import { useMediaQuery } from "@mui/system";
 
 const ImageMap = () => {
@@ -57,8 +57,8 @@ const ImageMap = () => {
       y: 185.983,
       width: 430.313,
       height: 138.575,
-      title: "/trading-api-sub-sec-1",
-      link: "trading-api-sub-sec-1",
+      title: "",
+      link: "/trading-api-sub-sec-1",
       status: "coming soon",
     },
     {
@@ -68,7 +68,7 @@ const ImageMap = () => {
       width: 510.541,
       height: 144.046,
       title: "",
-      link: "trading-api-sub-sec-2",
+      link: "/trading-api-sub-sec-2",
       status: "coming soon",
     },
     {
@@ -168,7 +168,7 @@ const ImageMap = () => {
       width: 601.709,
       height: 147.692,
       title: "",
-      link: "trading-api-sub-sec-12",
+      link: "/trading-api-sub-sec-12",
       status: "coming soon",
     },
   ];
@@ -188,7 +188,7 @@ const ImageMap = () => {
       >
         <Stack flexDirection="row" alignItems="center" mt={5}>
           <Image
-            src={MultiBackIcon}
+            src={CommonBackIcon}
             alt="back"
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}

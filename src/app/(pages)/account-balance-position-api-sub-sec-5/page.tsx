@@ -1,5 +1,4 @@
 import {
-  ResponseSectionImage1,
   ResponseSectionImageAPI5,
 } from "@/assets";
 import { CommonPage } from "@/components";
