@@ -3,10 +3,9 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Section } from "@/assets";
 import { CheckboxForm } from "@/components/checkbox-form";
-import { colorLegends, MultiBackIcon } from "@/assets/common-assets";
+import { colorLegends, CommonBackIcon } from "@/assets/common-assets";
 import { useMediaQuery } from "@mui/system";
 
 const ImageMap = () => {
@@ -50,11 +49,6 @@ const ImageMap = () => {
     router.push("/");
   }, [router]);
 
-  const toggleDropdown = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsOpen((prev) => !prev);
-  }, []);
-
   // Areas data from your SVG
   const areas = [
     {
@@ -63,7 +57,7 @@ const ImageMap = () => {
       y: 293.083,
       width: 600.205,
       height: 149.174,
-      title: "section1",
+      title: "private/get-order-history",
       link: "/private-get-order-history",
       status: "active",
     },
@@ -73,8 +67,8 @@ const ImageMap = () => {
       y: 1604.057,
       width: 415.932,
       height: 147.419,
-      title: "section2",
-      link: "#section2",
+      title: "private/get-trades",
+      link: "/private-get-trades",
       status: "active",
     },
     {
@@ -83,15 +77,15 @@ const ImageMap = () => {
       y: 2779.897,
       width: 417.687,
       height: 168.479,
-      title: "section3",
-      link: "#section3",
+      title: "private/get-transactions",
+      link: "/private-get-transactions",
       status: "selected",
     },
   ];
 
   const isMobile = useMediaQuery("(max-width: 900px)");
   return (
-    <Box sx={{ py: 4, px: 3 }}>
+    <Box sx={{ py: 5, px: 3 }}>
       {/* Header */}
       <Stack
         flexDirection={{ xs: "column", sm: "row" }}
@@ -99,12 +93,11 @@ const ImageMap = () => {
         alignItems={{ xs: "flex-start", sm: "center" }}
         flexWrap="wrap"
         gap={2}
-        mb={3}
       >
         {/* Back Icon + Title */}
-        <Stack flexDirection="row" alignItems="center" mt={5}>
+        <Stack>
           <Image
-            src={MultiBackIcon}
+            src={CommonBackIcon}
             alt="back"
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}
@@ -112,42 +105,17 @@ const ImageMap = () => {
             style={{ cursor: "pointer" }}
           />
           <Typography
-            variant="h3"
-            color="#0246BC"
-            fontSize={{ xs: "1.2rem", sm: "1.8rem", md: "2.5rem" }}
-            fontWeight={600}
-            ml={2}
+            variant="h5"
+            color="#5A5867"
+            fontSize={{ xs: "1rem", sm: "24px", md: "28px" }}
+            fontWeight={{ md: 600, xs: 500 }}
+            mt={{ xs: 2, md: 4 }}
+            mb={{ xs: 2, md: 3 }}
+            ml={{ xs: 2 }}
+            sx={{ fontFamily: "inherit" }}
           >
-            Product Features (1st Release)
+            Order, Trade, Transaction History API
           </Typography>
-        </Stack>
-
-        {/* Legend Toggle */}
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="flex-end"
-          sx={{ ml: "auto", mt: 5 }}
-        >
-          <Typography
-            fontSize={{ xs: "1rem", sm: "1.2rem", md: "1.5rem" }}
-            fontWeight={600}
-            color="#0246BC"
-            sx={{ mr: 1, textTransform: "uppercase" }}
-          >
-            Color Legends (Key)
-          </Typography>
-          <KeyboardArrowDownIcon
-            onClick={toggleDropdown}
-            sx={{
-              fontSize: { xs: 28, md: 30 },
-              color: "#0246BC",
-              border: "2px solid",
-              borderRadius: "50%",
-              cursor: "pointer",
-              p: 0.3,
-            }}
-          />
         </Stack>
       </Stack>
 
@@ -159,7 +127,8 @@ const ImageMap = () => {
       {/* Image with clickable areas */}
       <Box
         id="image-map-container"
-        sx={{ position: "relative", width: "100%" }}
+        boxSizing={"border-box"}
+        sx={{ position: "relative", mx: 2 }}
       >
         <Image
           src={Section}
@@ -181,10 +150,10 @@ const ImageMap = () => {
               transition: "all 0.2s ease-in-out",
               border: "2px solid transparent",
               borderRadius: "2px",
-              ...(area.status === "selected" && {
-                border: "2px solid #1976d2",
-                backgroundColor: "rgba(25, 118, 210, 0.1)",
-              }),
+              // ...(area.status === "selected" && {
+              //   border: "2px solid #1976d2",
+              //   backgroundColor: "rgba(25, 118, 210, 0.1)",
+              // }),
             }}
             onClick={() => handleAreaClick(area)}
             title={area.title || `Section ${area.id}`}
