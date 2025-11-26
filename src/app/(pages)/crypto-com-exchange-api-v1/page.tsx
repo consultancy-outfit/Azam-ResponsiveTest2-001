@@ -1,6 +1,4 @@
 import {
-    img1CryptoImage,
-    img2CryptoImage,
     img3CryptoImage,
     img4CryptoImage,
   } from "@/assets";
