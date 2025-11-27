@@ -131,14 +131,18 @@ const ImageMapSection2 = () => {
   const isMobile = useMediaQuery("(max-width: 900px)");
 
   return (
-    <Box sx={{ py: 5, px: 3 }}>
-      {/* ---------------- Header ---------------- */}
+    <Box sx={{ py: 4, px: 3 }}>
+      {/* Header */}
       <Stack
         flexDirection={{ xs: "column", sm: "row" }}
-        alignItems={{ xs: "flex-start", sm: "center" }}
         justifyContent="space-between"
+        alignItems={{ xs: "flex-start", sm: "center" }}
+        flexWrap="wrap"
+        gap={2}
+        mb={3}
       >
-        <Stack direction={"row"} alignItems={"center"} mb={{ xs: 2, md: 3 }}>
+        {/* Back Icon + Title */}
+        <Stack direction={"row"} alignItems={"center"} mt={5}>
           <Image
             src={CommonBackIcon}
             alt="back"
@@ -149,14 +153,11 @@ const ImageMapSection2 = () => {
           />
 
           <Typography
-            variant="h5"
-            color="#5A5867"
-            fontSize={{ xs: "1rem", sm: "24px", md: "28px" }}
-            fontWeight={{ md: 600, xs: 500 }}
-            sx={{
-              ml: 2,
-              fontFamily: "inherit",
-            }}
+            variant="h3"
+            color="#0246BC"
+            fontSize={{ xs: "1.2rem", sm: "1.8rem", md: "2.5rem" }}
+            fontWeight={600}
+            ml={2}
           >
             Fiat Wallet API
           </Typography>
