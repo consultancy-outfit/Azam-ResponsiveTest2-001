@@ -118,7 +118,7 @@ const ImageMap = () => {
 
   return (
     <Box sx={{ py: 5, px: 3 }}>
-      <Stack>
+      <Stack direction={"row"} alignItems={"center"} mb={{ xs: 2, md: 3 }}>
         <Image
           src={CommonBackIcon}
           alt="back"
@@ -133,7 +133,6 @@ const ImageMap = () => {
           color="#5A5867"
           fontSize={{ xs: "1rem", sm: "24px", md: "28px" }}
           fontWeight={{ md: 600, xs: 500 }}
-          mt={{ xs: 2, md: 4 }}
           sx={{
             ml: 2,
             fontFamily: "inherit",
