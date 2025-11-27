@@ -51,7 +51,6 @@ import {
       {
         title: "FIX Messages",
         image: img4CryptoImage,
-        route: "/",
       },
     ];
   

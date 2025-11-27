@@ -1,12 +1,23 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-const baseDir = path.join(__dirname, "src", "app", "(pages)");
-const assetsDir = path.join(__dirname, "src", "assets");
-const indexTsxPath = path.join(assetsDir, "index.tsx");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const baseDir = path.resolve(__dirname, "src", "app", "(pages)");
+const assetsDir = path.resolve(__dirname, "src", "assets");
+const indexTsxPath = path.resolve(assetsDir, "index.tsx");
 
 const pages = [
-  { name: "AQSE Overview", backRoute: "/" },
+  { name: "Foreign Exchange Page", backRoute: "/clear-junction-reference" },
+  { name: "Client Money Account e-Wallet Page", backRoute: "/clear-junction-reference" },
+  { name: "Reports Page", backRoute: "/clear-junction-reference" },
+  { name: "Transaction Actions Page", backRoute: "/clear-junction-reference" },
+  { name: "Check Requisite Page", backRoute: "/clear-junction-reference" },
+  { name: "Entity Partner Page", backRoute: "/clear-junction-reference" },
+  { name: "Entity Payment Details Page", backRoute: "/clear-junction-reference" },
 ];
 
 const toPascalCase = (str) =>
