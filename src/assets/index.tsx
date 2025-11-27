@@ -309,6 +309,7 @@ export { default as websocketSubscriptions18 } from "./websocketSubscriptions18.
 export { default as websocketSubscriptions19 } from "./websocketSubscriptions19.svg";
 export { default as websocketSubscriptions20 } from "./websocketSubscriptions20.svg";
 export { default as websocketSubscriptions21 } from "./websocketSubscriptions21.svg";
+export { default as commonIssuesImg } from "./commonIssuesImg.svg";
 // export { default as fixApiSessionManagement} from "./fixSessionManagement.svg";
 // export { default as fixApiGenerate } from "./generateFixApi.svg"
 // export { default as RateLimit } from "./ratelimit.svg"
