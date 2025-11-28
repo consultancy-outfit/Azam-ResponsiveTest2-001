@@ -47,7 +47,7 @@ const ImageMap = () => {
   };
 
   const onBackIconClick = useCallback(() => {
-    router.push("/");
+    router.push("/clear-junction-reference");
   }, [router]);
 
   // Areas data from your SVG

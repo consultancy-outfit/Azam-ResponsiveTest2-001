@@ -8,7 +8,7 @@ const ReponsesReasonCodes = () => {
       pageTitle={`Create Invoice/Credit/Debit Card`}
       src={payinSecImage1}
       backRoute="/Payin-main"
-      subPageTitle="Credit/Debit Card_Request Body"
+      
     />
   );
 };

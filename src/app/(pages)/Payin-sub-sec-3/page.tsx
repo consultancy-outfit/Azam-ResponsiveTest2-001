@@ -1,4 +1,4 @@
-import { payinSecImage1, payinSecImage3 } from "@/assets";
+import { payinSecImage3 } from "@/assets";
 import { CommonPage } from "@/components";
 import React from "react";
 

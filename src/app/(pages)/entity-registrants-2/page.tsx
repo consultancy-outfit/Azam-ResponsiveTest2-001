@@ -1,7 +1,5 @@
 import {
   EntityRegistrantsImageSec2,
-    TokenizeRequestAttributesImage1,
-    tradingapisubsec1Image1,
   } from "@/assets";
   import { CommonPage } from "@/components";
   import React from "react";

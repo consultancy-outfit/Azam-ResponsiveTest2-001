@@ -3,16 +3,14 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { CheckboxForm } from "@/components/checkbox-form";
-import { colorLegends, MultiBackIcon } from "@/assets/common-assets";
+import { CommonBackIcon } from "@/assets/common-assets";
 import { useMediaQuery } from "@mui/system";
 import { payinImageMain } from "@/assets";
 
 const ImageMap = () => {
   const router = useRouter();
   const [containerWidth, setContainerWidth] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const updateSize = () => {
@@ -47,13 +45,8 @@ const ImageMap = () => {
   };
 
   const onBackIconClick = useCallback(() => {
-    router.push("/");
+    router.push("/clear-junction-reference");
   }, [router]);
-
-  const toggleDropdown = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsOpen((prev) => !prev);
-  }, []);
 
   // Areas data from your SVG
   const areas = [
@@ -125,7 +118,7 @@ const ImageMap = () => {
         {/* Back Icon + Title */}
         <Stack flexDirection="row" alignItems="center" mt={5}>
           <Image
-            src={MultiBackIcon}
+            src={CommonBackIcon}
             alt="back"
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}
@@ -141,34 +134,6 @@ const ImageMap = () => {
           >
             Clear junction API / Payin /
           </Typography>
-        </Stack>
-
-        {/* Legend Toggle */}
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="flex-end"
-          sx={{ ml: "auto", mt: 5 }}
-        >
-          <Typography
-            fontSize={{ xs: "1rem", sm: "1.2rem", md: "1.5rem" }}
-            fontWeight={600}
-            color="#0246BC"
-            sx={{ mr: 1, textTransform: "uppercase" }}
-          >
-            Color Legends (Key)
-          </Typography>
-          <KeyboardArrowDownIcon
-            onClick={toggleDropdown}
-            sx={{
-              fontSize: { xs: 28, md: 30 },
-              color: "#0246BC",
-              border: "2px solid",
-              borderRadius: "50%",
-              cursor: "pointer",
-              p: 0.3,
-            }}
-          />
         </Stack>
       </Stack>
 
@@ -208,44 +173,6 @@ const ImageMap = () => {
           />
         ))}
       </Box>
-
-      {/* Legend Dropdown */}
-      {isOpen && (
-        <>
-          <Box
-            sx={{
-              position: "fixed",
-              inset: 0,
-              background: "rgba(0,0,0,0.4)",
-              zIndex: 1200,
-            }}
-            onClick={() => setIsOpen(false)}
-          />
-          <Box
-            sx={{
-              position: "fixed",
-              top: { xs: "20%", md: "150px" },
-              right: { xs: "10%", md: "50px" },
-              width: { xs: "80%", sm: "400px", md: "450px" },
-              background: "#fff",
-              borderRadius: 2,
-              boxShadow: 4,
-              p: 2,
-              zIndex: 1300,
-              animation: "fadeIn 0.3s ease",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Image
-              src={colorLegends}
-              alt="Color Legend"
-              width={450}
-              height={450}
-              style={{ width: "100%", height: "auto" }}
-            />
-          </Box>
-        </>
-      )}
     </Box>
   );
 };

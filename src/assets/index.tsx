@@ -339,3 +339,34 @@ export { default as payinSecImage3 } from "./payinSecImage3.svg";
 export { default as payinSecImage4 } from "./payinSecImage4.svg";
 export { default as payinSecImage5 } from "./payinSecImage5.svg";
 
+export { default as virtualAccountImage } from "./virtualAccountImage.svg";
+export { default as virtualAccountsSec1Image } from "./virtualAccountsSec1Image.svg";
+export { default as virtualAccountsSec2Image } from "./virtualAccountsSec2Image.svg";
+export { default as virtualAccountsSec3Image } from "./virtualAccountsSec3Image.svg";
+export { default as virtualAccountsSec4Image } from "./virtualAccountsSec4Image.svg";
+export { default as virtualAccountsSec5Image } from "./virtualAccountsSec5Image.svg";
+export { default as virtualAccountsSec6Image } from "./virtualAccountsSec6Image.svg";
+export { default as virtualAccountsSec7Image } from "./virtualAccountsSec7Image.svg";
+export { default as virtualAccountsSec8Image } from "./virtualAccountsSec8Image.svg";
+export { default as virtualAccountsSec9Image } from "./virtualAccountsSec9Image.svg";
+
+export { default as payoutMainImage } from "./payoutMainImage.svg";
+export { default as payoutsecImage1 } from "./payoutsecImage1.svg";
+export { default as payoutsecImage2 } from "./payoutsecImage2.svg";
+export { default as payoutsecImage3 } from "./payoutsecImage3.svg";
+export { default as payoutsecImage4 } from "./payoutsecImage4.svg";
+export { default as payoutsecImage5 } from "./payoutsecImage5.svg";
+export { default as payoutsecImage6 } from "./payoutsecImage6.svg";
+export { default as payoutsecImage7 } from "./payoutsecImage7.svg";
+export { default as payoutsecImage8 } from "./payoutsecImage8.svg";
+export { default as payoutsecImage9 } from "./payoutsecImage9.svg";
+export { default as payoutsecImage10 } from "./payoutsecImage10.svg";
+export { default as payoutsecImage11 } from "./payoutsecImage11.svg";
+export { default as payoutsecImage12 } from "./payoutsecImage12.svg";
+export { default as payoutsecImage13 } from "./payoutsecImage13.svg";
+export { default as payoutsecImage14 } from "./payoutsecImage14.svg";
+export { default as payoutsecImage15 } from "./payoutsecImage15.svg";
+export { default as payoutsecImage16 } from "./payoutsecImage16.svg";
+export { default as payoutsecImage17 } from "./payoutsecImage17.svg";
+
+
