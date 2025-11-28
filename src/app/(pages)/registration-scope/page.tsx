@@ -3,6 +3,7 @@ import {
   CardTwoImage,
   CardThreeImage,
   CardFourImage,
+  CardfiveImage
 } from "@/assets";
 import CommonCardPage from "@/components/common-card-page";
 import React from "react";
@@ -31,6 +32,12 @@ const RegistrationScopePage = () => {
       title: "Crypto",
       image: CardFourImage,
       route: "/crypto",
+      data: true,
+    },
+    {
+      title: "Open Payd",
+      image: CardfiveImage,
+      route: "/open-payd",
       data: true,
     },
   ];
