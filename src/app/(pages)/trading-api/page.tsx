@@ -54,7 +54,7 @@ const ImageMap = () => {
     {
       id: 1,
       x: 34.644,
-      y: 185.983,
+      y: 45.983,
       width: 430.313,
       height: 138.575,
       title: "",
@@ -64,7 +64,7 @@ const ImageMap = () => {
     {
       id: 2,
       x: 47.407,
-      y: 1382.108,
+      y: 1242.108,
       width: 510.541,
       height: 144.046,
       title: "",
@@ -74,7 +74,7 @@ const ImageMap = () => {
     {
       id: 3,
       x: 60.171,
-      y: 2259.145,
+      y: 2119.145,
       width: 381.083,
       height: 144.046,
       title: "",
@@ -84,7 +84,7 @@ const ImageMap = () => {
     {
       id: 9,
       x: 56.524,
-      y: 2988.49,
+      y: 2908.49,
       width: 459.487,
       height: 149.516,
       title: "",
@@ -94,7 +94,7 @@ const ImageMap = () => {
     {
       id: 10,
       x: 56.524,
-      y: 3861.88,
+      y: 3801.88,
       width: 441.254,
       height: 164.103,
       title: "",
@@ -104,7 +104,7 @@ const ImageMap = () => {
     {
       id: 11,
       x: 52.877,
-      y: 4726.154,
+      y: 4686.154,
       width: 461.311,
       height: 145.869,
       title: "",
@@ -114,7 +114,7 @@ const ImageMap = () => {
     {
       id: 4,
       x: 25.527,
-      y: 6146.553,
+      y: 6006.553,
       width: 519.658,
       height: 185.983,
       title: "",
@@ -124,7 +124,7 @@ const ImageMap = () => {
     {
       id: 5,
       x: 40.114,
-      y: 7552.365,
+      y: 7472.365,
       width: 590.769,
       height: 138.575,
       title: "",
@@ -134,7 +134,7 @@ const ImageMap = () => {
     {
       id: 6,
       x: 47.407,
-      y: 8194.188,
+      y: 8054.188,
       width: 618.12,
       height: 213.333,
       title: "",
@@ -144,7 +144,7 @@ const ImageMap = () => {
     {
       id: 7,
       x: 45.584,
-      y: 8876.125,
+      y: 8796.125,
       width: 506.895,
       height: 160.456,
       title: "",
@@ -154,7 +154,7 @@ const ImageMap = () => {
     {
       id: 8,
       x: 56.524,
-      y: 9581.766,
+      y: 9521.766,
       width: 386.553,
       height: 169.573,
       title: "",
@@ -162,9 +162,9 @@ const ImageMap = () => {
       status: "coming soon",
     },
     {
-      id: 11,
+      id: 12,
       x: 34.644,
-      y: 10276.467,
+      y: 10256.467,
       width: 601.709,
       height: 147.692,
       title: "",
@@ -228,15 +228,6 @@ const ImageMap = () => {
             key={area.id}
             sx={{
               ...calculateStyle(area),
-              "&:hover": {
-                backgroundColor: "rgba(255, 255, 255, 0.2)",
-                border: "2px solid white",
-                opacity: 0.2,
-              },
-              boxSizing: "border-box",
-              transition: "all 0.2s ease-in-out",
-              border: "2px solid transparent",
-              borderRadius: "2px",
             }}
             onClick={() => handleAreaClick(area)}
             title={area.title || `Section ${area.id}`}
