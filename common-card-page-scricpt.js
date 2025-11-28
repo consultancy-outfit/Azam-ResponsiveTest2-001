@@ -1,5 +1,9 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const baseDir = path.join(__dirname, "src", "app", "(pages)");
 const assetsDir = path.join(__dirname, "src", "assets");
@@ -7,26 +11,14 @@ const indexTsxPath = path.join(assetsDir, "index.tsx");
 
 const pages = [
   {
-    pathName: "Some Page",
-    pageTitle: "Some Page",
+    pathName: "Test Umer Shahid",
+    pageTitle: "Test Umer Shahid",
     backRoute: "/registration-scope",
     cards: [
       {
-        title: "Card 5",
-        route: "/some-page",
+        title: "Introduction",
+        route: "/Umar Shahid's Injured Testicles By Umair Khatri",
         data: true,
-      },
-      {
-        title: "Card 6",
-        route: "/another-page",
-      },
-      {
-        title: "Card 7",
-        data: true
-      },
-      {
-        title: "Card 8",
-        route: "/yet-another-page",
       },
     ],
   },
@@ -74,7 +66,8 @@ const generatePageContent = (page, pascalName, cardsWithImages) => {
       properties += `  image: ${card.imageName}`;
 
       if (card.route) {
-        properties += `,\n  route: "${card.route}"`;
+        const kebabCaseRoute = toKebabCase(card.route);
+        properties += `,\n  route: "/${kebabCaseRoute}"`;
       }
 
       const cardObj = `{

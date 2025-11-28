@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { EntityRegistrantsImage } from "@/assets";
+import { EntityRegistrantsImageMain } from "@/assets";
 import { CheckboxForm } from "@/components/checkbox-form";
 import { CommonBackIcon } from "@/assets/common-assets";
 import { useMediaQuery } from "@mui/system";
@@ -128,7 +128,7 @@ const ImageMap = () => {
         sx={{ position: "relative", width: "100%" }}
       >
         <Image
-          src={EntityRegistrantsImage}
+          src={EntityRegistrantsImageMain}
           alt="Comprehensive System Map"
           style={{ width: "100%", height: "auto" }}
         />

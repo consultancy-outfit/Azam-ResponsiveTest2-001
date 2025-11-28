@@ -1,12 +1,43 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const baseDir = path.join(__dirname, "src", "app", "(pages)");
 const assetsDir = path.join(__dirname, "src", "assets");
 const indexTsxPath = path.join(assetsDir, "index.tsx");
 
 const pages = [
-  { name: "rest-api-1", backRoute: "/scrypt-api11" },
+  { name: "Reserve Corporate Customer Wall 1.1.1", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Transfer Wallet \"Execution\" (Transfer funds between wallets.) 5", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Reserve Corporate Customer Wall 1.1.2", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Get reservation status by orderReference 2.1", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Get Status by orderReference 6.1", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Get reservation status by clientOrder 2.2", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Get Status by clientOrder 6.2", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Example Wallet reservation Notification Message 3.2", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Get the Wallet 4.1", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Transfer Wallet Notification Message (Example) 7", backRoute: "/client-money-account-e-wallet-page" },
+  { name: "Entity Partner_ Corporate Entity", backRoute: "/entity-partner-page" },
+  { name: "Entity Partner_ Corporate GB Entity", backRoute: "/entity-partner-page" },
+  { name: "Entity Partner_ Corporate CHAPS Cross Scheme Entity", backRoute: "/entity-partner-page" },
+  { name: "Entity Partner_ Ultimate Corporate Entity", backRoute: "/entity-partner-page" },
+  { name: "Entity Partner_ Individual InternalPayment Entity", backRoute: "/entity-partner-page" },
+  { name: "Entity Partner_ Individual Eu Entity", backRoute: "/entity-partner-page" },
+  { name: "Entity Partner_Individual CHAPS Cross Scheme Entity", backRoute: "/entity-partner-page" },
+  { name: "Entity Partner_Ultimate Individual Entity", backRoute: "/entity-partner-page" },
+  { name: "Entity Payment Detail/Bank Transfer Swift/Example Bank Transfer Swift payment detail Entity", backRoute: "/entity-payment-details-page" },
+  { name: "Entity Payment Detail/Bank Transfer Eu/Example Bank Transfer Eu payment detail Entity", backRoute: "/entity-payment-details-page" },
+  { name: "Entity Payment Detail/Internal Payment/Example Internal Payment detail Entity", backRoute: "/entity-payment-details-page" },
+  { name: "Entity Payment Detail/Bank Transfer Sepa Inst/Example Bank Transfer Sepa Inst payment detail Entity", backRoute: "/entity-payment-details-page" },
+  { name: "Entity Payment Detail/Bank Transfer FasterPayments/Example Bank Transfer Uk (FasterPayments) payment detail Entity", backRoute: "/entity-payment-details-page" },
+  { name: "Entity Payment Detail/Bank Transfer CHAPS/Example Bank Transfer Uk (CHAPS) payment detail Entity", backRoute: "/entity-payment-details-page" },
+  { name: "Entity Payment Detail/Bank Transfer CHAPS Cross Scheme/Example Bank Transfer Uk (CHAPS Cross Scheme) payment detail Entity", backRoute: "/entity-payment-details-page" },
+  { name: "Entity Payment Detail/Bank Transfer BACS/Example Bank Transfer Uk (BACS) payment detail Entity", backRoute: "/entity-payment-details-page" },
+  { name: "Entity Payment Detail/Bank Transfer Uk/Example Bank Transfer Uk payment detail Entity", backRoute: "/entity-payment-details-page" },
 ];
 
 const toPascalCase = (str) =>
