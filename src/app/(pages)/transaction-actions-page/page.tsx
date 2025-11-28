@@ -58,7 +58,7 @@ const areas = [
 const TransactionActionsPagePage = () => {
   return (
     <CommonImgMapPage
-      pageTitle={`Transaction Actions Page`}
+      pageTitle={`Transaction Actions`}
       image={TransactionActionsPageImage}
       backRoute="/clear-junction-reference"
       areas={areas}

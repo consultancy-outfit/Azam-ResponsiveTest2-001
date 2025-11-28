@@ -42,7 +42,7 @@ const areas = [
 const CheckRequisitePagePage = () => {
   return (
     <CommonImgMapPage
-      pageTitle={`Check Requisite Page`}
+      pageTitle={`Check Requisite`}
       image={CheckRequisitePageImage}
       backRoute="/clear-junction-reference"
       areas={areas}

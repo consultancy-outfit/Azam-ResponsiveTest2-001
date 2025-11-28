@@ -107,7 +107,7 @@ const areas = [
 const EntityPaymentDetailsPagePage = () => {
   return (
     <CommonImgMapPage
-      pageTitle={`Entity Payment Details Page`}
+      pageTitle={`Entity Payment Details`}
       image={EntityPaymentDetailsPageImage}
       backRoute="/clear-junction-reference"
       areas={areas}

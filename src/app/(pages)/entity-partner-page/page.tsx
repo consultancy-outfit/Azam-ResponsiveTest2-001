@@ -144,7 +144,7 @@ const areas = [
 const EntityPartnerPagePage = () => {
   return (
     <CommonImgMapPage
-      pageTitle={`Entity Partner Page`}
+      pageTitle={`Entity Partner`}
       image={EntityPartnerPageImage}
       backRoute="/clear-junction-reference"
       areas={areas}

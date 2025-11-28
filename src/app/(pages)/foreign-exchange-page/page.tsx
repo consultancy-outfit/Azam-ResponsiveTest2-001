@@ -89,7 +89,7 @@ const areas = [
 const ForeignExchangePagePage = () => {
   return (
     <CommonImgMapPage
-      pageTitle={`Foreign Exchange Page`}
+      pageTitle={`Foreign Exchange`}
       image={ForeignExchangePageImage}
       backRoute="/clear-junction-reference"
       areas={areas}
