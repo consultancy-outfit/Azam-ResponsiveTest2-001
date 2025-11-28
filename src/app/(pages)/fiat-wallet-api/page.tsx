@@ -149,7 +149,7 @@ const ImageMapSection2 = () => {
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}
             style={{ cursor: "pointer" }}
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/crypto-com-exchange-api-v1")}
           />
 
           <Typography
@@ -170,7 +170,7 @@ const ImageMapSection2 = () => {
       </Box>
 
       {/* ---------------- Image Map ---------------- */}
-      <Box id="image-map-container" sx={{ position: "relative", mx: 2 }}>
+      <Box id="image-map-container" sx={{ position: "relative" }}>
         <Image
           src={fiatWalletApi}
           alt="Wallet API Extended"

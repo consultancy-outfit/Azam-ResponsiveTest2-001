@@ -46,7 +46,7 @@ const ImageMap = () => {
   };
 
   const onBackIconClick = useCallback(() => {
-    router.push("/");
+    router.push("/crypto-com-exchange-api-v1");
   }, [router]);
 
   // Areas data from your SVG
@@ -126,7 +126,7 @@ const ImageMap = () => {
       <Box
         id="image-map-container"
         boxSizing={"border-box"}
-        sx={{ position: "relative", mx: 2 }}
+        sx={{ position: "relative" }}
       >
         <Image
           src={Section}

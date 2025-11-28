@@ -241,7 +241,7 @@ const ImageMapLarge = () => {
             alt="back"
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/crypto-com-exchange-api-v1")}
             style={{ cursor: "pointer" }}
           />
 
@@ -263,7 +263,7 @@ const ImageMapLarge = () => {
       </Box>
 
       {/* ----------- Image Map Container ---------- */}
-      <Box id="image-map-container-2" sx={{ position: "relative", mx: 2 }}>
+      <Box id="image-map-container-2" sx={{ position: "relative"}}>
         <Image
           src={websocketSubscriptions}
           alt="API Map"

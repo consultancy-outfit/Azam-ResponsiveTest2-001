@@ -34,7 +34,7 @@ const ImageMap = () => {
             alt="back"
             width={isMobile ? 24 : 40}
             height={isMobile ? 24 : 40}
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/crypto-com-exchange-api-v1")}
             style={{ cursor: "pointer" }}
           />
 
@@ -56,7 +56,7 @@ const ImageMap = () => {
       </Box>
 
       {/* ---------------- Image Map ---------------- */}
-      <Box id="image-map-container" sx={{ position: "relative", mx: 2 }}>
+      <Box id="image-map-container" sx={{ position: "relative" }}>
         <Image
           src={commonIssuesImg}
           alt="Wallet API Map"

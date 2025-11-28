@@ -56,32 +56,32 @@ const CryptoPage = () => {
     {
       title: "Order, Trade, Transaction History API",
       image: img7CryptoImagev1,
-      
+      route: "/order-trade-transaction-history-api",
     },
     {
       title: "Wallet API",
       image: img8CryptoImagev1,
-     
+      route: "/wallet-api",
     },
     {
       title: "Fiat Wallet API",
       image: img9CryptoImagev1,
-      
+      route: "/fiat-wallet-api",
     },
     {
       title: "Staking API",
       image: img10CryptoImagev1,
-      
+      route: "/staking-api",
     },
     {
       title: "Websocket Subscriptions",
       image: img11CryptoImagev1,
-      
+      route: "/websocket-subscriptions",
     },
     {
       title: "Common Issues",
       image: img12CryptoImagev1,
-      
+      route: "/common-issues",
     },
   ];
 
