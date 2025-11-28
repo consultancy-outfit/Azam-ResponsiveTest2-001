@@ -40,7 +40,7 @@ const SectionImageMapV3 = () => {
   // ----------------------------------------------------
   // Click handler
   // ----------------------------------------------------
-  const handleAreaClick = (area) => {
+  const handleAreaClick = (area:any) => {
     if (area.link && area.link !== "#") {
       router.push(area.link);
     }
@@ -49,7 +49,7 @@ const SectionImageMapV3 = () => {
   // ----------------------------------------------------
   // Convert SVG → responsive box style
   // ----------------------------------------------------
-  const calculateStyle = (area) => {
+  const calculateStyle = (area:any) => {
     if (containerWidth === 0) return {};
 
     return {
