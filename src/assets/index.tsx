@@ -34,7 +34,7 @@ export { default as OpenPayd10Image } from "./OpenPayd10Image.svg";
 export { default as OpenPayd11Image } from "./OpenPayd11Image.svg";
 export { default as OpenPayd12Image } from "./OpenPayd12Image.svg";
 export { default as OpenpaydApiImage } from "./OpenpaydApiImage.svg";
-export { default as AuthenticationImage } from "./authentication.svg";
+// export { default as AuthenticationImage } from "./authentication.svg";
 export { default as GetAccessTokenImage } from "./GetAccessTokenImage.svg";
 export { default as LinkedClientsImages } from "./LinkedClientsImages.svg";
 export { default as TheLinkedClientObjectImage } from "./TheLinkedClientObjectImage.svg";
@@ -418,3 +418,137 @@ export { default as tradingapisubsec1Image9 } from "./tradingapisubsec1Image9.sv
 export { default as tradingapisubsec1Image10 } from "./tradingapisubsec1Image10.svg";
 export { default as tradingapisubsec1Image11 } from "./tradingapisubsec1Image11.svg";
 export { default as tradingapisubsec1Image12 } from "./tradingapisubsec1Image12.svg";
+
+export { default as TokenizeImageMain } from "./TokenizeImageMain.svg";
+export { default as TokenizeRequestAttributesImage1 } from "./TokenizeRequestAttributesImage1.svg";
+export { default as TokenizeRequestAttributesImage2 } from "./TokenizeRequestAttributesImage2.svg";
+
+// export { default as EntityRegistrantsImage } from "./EntityRegistrantsImage.svg";
+export { default as EntityRegistrantsImageMain} from "./EntityRegistrantsImageMain.svg";
+export { default as EntityRegistrantsImageSec1 } from "./EntityRegistrantsImageSec1.svg";
+export { default as EntityRegistrantsImageSec2 } from "./EntityRegistrantsImageSec2.svg";
+export { default as EntityRegistrantsImageSec3 } from "./EntityRegistrantsImageSec3.svg";
+
+export { default as payinImageMain } from "./payinImageMain.svg";
+export { default as payinSecImage1 } from "./payinSecImage1.svg";
+export { default as payinSecImage2 } from "./payinSecImage2.svg";
+export { default as payinSecImage3 } from "./payinSecImage3.svg";
+export { default as payinSecImage4 } from "./payinSecImage4.svg";
+export { default as payinSecImage5 } from "./payinSecImage5.svg";
+
+export { default as virtualAccountImage } from "./virtualAccountImage.svg";
+export { default as virtualAccountsSec1Image } from "./virtualAccountsSec1Image.svg";
+export { default as virtualAccountsSec2Image } from "./virtualAccountsSec2Image.svg";
+export { default as virtualAccountsSec3Image } from "./virtualAccountsSec3Image.svg";
+export { default as virtualAccountsSec4Image } from "./virtualAccountsSec4Image.svg";
+export { default as virtualAccountsSec5Image } from "./virtualAccountsSec5Image.svg";
+export { default as virtualAccountsSec6Image } from "./virtualAccountsSec6Image.svg";
+export { default as virtualAccountsSec7Image } from "./virtualAccountsSec7Image.svg";
+export { default as virtualAccountsSec8Image } from "./virtualAccountsSec8Image.svg";
+export { default as virtualAccountsSec9Image } from "./virtualAccountsSec9Image.svg";
+
+export { default as payoutMainImage } from "./payoutMainImage.svg";
+export { default as payoutsecImage1 } from "./payoutsecImage1.svg";
+export { default as payoutsecImage2 } from "./payoutsecImage2.svg";
+export { default as payoutsecImage3 } from "./payoutsecImage3.svg";
+export { default as payoutsecImage4 } from "./payoutsecImage4.svg";
+export { default as payoutsecImage5 } from "./payoutsecImage5.svg";
+export { default as payoutsecImage6 } from "./payoutsecImage6.svg";
+export { default as payoutsecImage7 } from "./payoutsecImage7.svg";
+export { default as payoutsecImage8 } from "./payoutsecImage8.svg";
+export { default as payoutsecImage9 } from "./payoutsecImage9.svg";
+export { default as payoutsecImage10 } from "./payoutsecImage10.svg";
+export { default as payoutsecImage11 } from "./payoutsecImage11.svg";
+export { default as payoutsecImage12 } from "./payoutsecImage12.svg";
+export { default as payoutsecImage13 } from "./payoutsecImage13.svg";
+export { default as payoutsecImage14 } from "./payoutsecImage14.svg";
+export { default as payoutsecImage15 } from "./payoutsecImage15.svg";
+export { default as payoutsecImage16 } from "./payoutsecImage16.svg";
+export { default as payoutsecImage17 } from "./payoutsecImage17.svg";
+
+
+export { default as IntroductionImage } from "./IntroductionImage.svg";
+export { default as ReferenceImage } from "./ReferenceImage.svg";
+export { default as PayoutImage } from "./PayoutImage.svg";
+export { default as PayinImage } from "./PayinImage.svg";
+export { default as RefundImage } from "./RefundImage.svg";
+export { default as ForeignExchangeImage } from "./ForeignExchangeImage.svg";
+export { default as VirtualAccountsImage } from "./VirtualAccountsImage.svg";
+export { default as ClientMoneyAccountEWalletImage } from "./ClientMoneyAccountEWalletImage.svg";
+export { default as ReportsImage } from "./ReportsImage.svg";
+export { default as TransactionActionsImage } from "./TransactionActionsImage.svg";
+export { default as CheckRequisiteImage } from "./CheckRequisiteImage.svg";
+export { default as TokenizeImage } from "./TokenizeImage.svg";
+export { default as EntityPartnerImage } from "./EntityPartnerImage.svg";
+export { default as EntityPaymentDetailsImage } from "./EntityPaymentDetailsImage.svg";
+export { default as EntityRegistrantsImage } from "./EntityRegistrantsImage.svg";
+export { default as AuthenticationImage } from "./AuthenticationImage.svg";
+export { default as IntroductionPageImage } from "./IntroductionPageImage.svg";
+export { default as RefundPageImage } from "./RefundPageImage.svg";
+
+export { default as RefundRefundNotificationMessageAttributesResponseAttributesImage } from "./RefundRefundNotificationMessageAttributesResponseAttributesImage.svg";
+export { default as StatusOfOrderGetStatusByClientorderResponseAttributesImage } from "./StatusOfOrderGetStatusByClientorderResponseAttributesImage.svg";
+export { default as StatusOfOrderGetStatusByOrderreferenceResponseAttributesImage } from "./StatusOfOrderGetStatusByOrderreferenceResponseAttributesImage.svg";
+export { default as RefundExecutionRefundResponseImage } from "./RefundExecutionRefundResponseImage.svg";
+export { default as RefundExecutionRefundRequestImage } from "./RefundExecutionRefundRequestImage.svg";
+
+export { default as ForeignExchangeInstantFxGetRateImage } from "./ForeignExchangeInstantFxGetRateImage.svg";
+export { default as ForeignExchangeInstantFxCreateTransferImage } from "./ForeignExchangeInstantFxCreateTransferImage.svg";
+export { default as ForeignExchangeInstantFxCreateTransferImage1 } from "./ForeignExchangeInstantFxCreateTransferImage1.svg";
+export { default as ForeignExchangeInstantFxGetStatusByOrderreferenceImage } from "./ForeignExchangeInstantFxGetStatusByOrderreferenceImage.svg";
+export { default as ForeignExchangeInstantFxGetStatusByClientorderImage } from "./ForeignExchangeInstantFxGetStatusByClientorderImage.svg";
+export { default as ForeignExchangeInstantFxInstantFxTransferNotificationMessageImage } from "./ForeignExchangeInstantFxInstantFxTransferNotificationMessageImage.svg";
+export { default as ForeignExchangeInstantFxGetRateImage1 } from "./ForeignExchangeInstantFxGetRateImage1.svg";
+
+export { default as TransactionreportRequestAttributesImage } from "./TransactionreportRequestAttributesImage.svg";
+export { default as StatementRequestAttributesImage } from "./StatementRequestAttributesImage.svg";
+export { default as TransactionreportResponseAttributesImage } from "./TransactionreportResponseAttributesImage.svg";
+export { default as StatementRequestAttributesImage1 } from "./StatementRequestAttributesImage1.svg";
+
+export { default as ApproveTransactionResponseAttributesImage } from "./ApproveTransactionResponseAttributesImage.svg";
+export { default as ApproveTransactionRequestAttributesImage } from "./ApproveTransactionRequestAttributesImage.svg";
+export { default as CancelTransactionRequestAttributesImage } from "./CancelTransactionRequestAttributesImage.svg";
+export { default as CancelTransactionResponseAttributesImage } from "./CancelTransactionResponseAttributesImage.svg";
+
+export { default as ConfirmationOfPayeeFlowImage } from "./ConfirmationOfPayeeFlowImage.svg";
+export { default as CheckSepaSctInstIbanImage } from "./CheckSepaSctInstIbanImage.svg";
+
+export { default as ReserveCorporateCustomerWall111Image } from "./ReserveCorporateCustomerWall111Image.svg";
+export { default as TransferWalletExecutionTransferFundsBetweenWallets5Image } from "./TransferWalletExecutionTransferFundsBetweenWallets5Image.svg";
+export { default as TransferWalletExecutionTransferFundsBetweenWallets51Image } from "./TransferWalletExecutionTransferFundsBetweenWallets51Image.svg";
+export { default as ReserveCorporateCustomerWall112Image } from "./ReserveCorporateCustomerWall112Image.svg";
+export { default as GetReservationStatusByOrderreference21Image } from "./GetReservationStatusByOrderreference21Image.svg";
+export { default as GetStatusByOrderreference61Image } from "./GetStatusByOrderreference61Image.svg";
+export { default as GetReservationStatusByClientorder22Image } from "./GetReservationStatusByClientorder22Image.svg";
+export { default as GetStatusByClientorder62Image } from "./GetStatusByClientorder62Image.svg";
+export { default as ExampleWalletReservationNotificationMessage32Image } from "./ExampleWalletReservationNotificationMessage32Image.svg";
+export { default as GetTheWallet41Image } from "./GetTheWallet41Image.svg";
+export { default as TransferWalletNotificationMessageExample7Image } from "./TransferWalletNotificationMessageExample7Image.svg";
+
+export { default as EntityPartnerCorporateEntityImage } from "./EntityPartnerCorporateEntityImage.svg";
+export { default as EntityPartnerCorporateGbEntityImage } from "./EntityPartnerCorporateGbEntityImage.svg";
+export { default as EntityPartnerCorporateChapsCrossSchemeEntityImage } from "./EntityPartnerCorporateChapsCrossSchemeEntityImage.svg";
+export { default as EntityPartnerUltimateCorporateEntityImage } from "./EntityPartnerUltimateCorporateEntityImage.svg";
+export { default as EntityPartnerIndividualInternalpaymentEntityImage } from "./EntityPartnerIndividualInternalpaymentEntityImage.svg";
+export { default as EntityPartnerIndividualEuEntityImage } from "./EntityPartnerIndividualEuEntityImage.svg";
+export { default as EntityPartnerIndividualChapsCrossSchemeEntityImage } from "./EntityPartnerIndividualChapsCrossSchemeEntityImage.svg";
+export { default as EntityPartnerUltimateIndividualEntityImage } from "./EntityPartnerUltimateIndividualEntityImage.svg";
+
+export { default as EntityPaymentDetailBankTransferSwiftExampleBankTransferSwiftPaymentDetailEntityImage } from "./EntityPaymentDetailBankTransferSwiftExampleBankTransferSwiftPaymentDetailEntityImage.svg";
+export { default as EntityPaymentDetailBankTransferEuExampleBankTransferEuPaymentDetailEntityImage } from "./EntityPaymentDetailBankTransferEuExampleBankTransferEuPaymentDetailEntityImage.svg";
+export { default as EntityPaymentDetailInternalPaymentExampleInternalPaymentDetailEntityImage } from "./EntityPaymentDetailInternalPaymentExampleInternalPaymentDetailEntityImage.svg";
+export { default as EntityPaymentDetailBankTransferSepaInstExampleBankTransferSepaInstPaymentDetailEntityImage } from "./EntityPaymentDetailBankTransferSepaInstExampleBankTransferSepaInstPaymentDetailEntityImage.svg";
+export { default as EntityPaymentDetailBankTransferFasterpaymentsExampleBankTransferUkFasterpaymentsPaymentDetailEntityImage } from "./EntityPaymentDetailBankTransferFasterpaymentsExampleBankTransferUkFasterpaymentsPaymentDetailEntityImage.svg";
+export { default as EntityPaymentDetailBankTransferChapsExampleBankTransferUkChapsPaymentDetailEntityImage } from "./EntityPaymentDetailBankTransferChapsExampleBankTransferUkChapsPaymentDetailEntityImage.svg";
+export { default as EntityPaymentDetailBankTransferChapsCrossSchemeExampleBankTransferUkChapsCrossSchemePaymentDetailEntityImage } from "./EntityPaymentDetailBankTransferChapsCrossSchemeExampleBankTransferUkChapsCrossSchemePaymentDetailEntityImage.svg";
+export { default as EntityPaymentDetailBankTransferBacsExampleBankTransferUkBacsPaymentDetailEntityImage } from "./EntityPaymentDetailBankTransferBacsExampleBankTransferUkBacsPaymentDetailEntityImage.svg";
+export { default as EntityPaymentDetailBankTransferUkExampleBankTransferUkPaymentDetailEntityImage } from "./EntityPaymentDetailBankTransferUkExampleBankTransferUkPaymentDetailEntityImage.svg";
+
+export { default as ForeignExchangePageImage } from "./ForeignExchangePageImage.svg";
+export { default as ClientMoneyAccountEWalletPageImage } from "./ClientMoneyAccountEWalletPageImage.svg";
+export { default as ReportsPageImage } from "./ReportsPageImage.svg";
+export { default as TransactionActionsPageImage } from "./TransactionActionsPageImage.svg";
+export { default as CheckRequisitePageImage } from "./CheckRequisitePageImage.svg";
+export { default as EntityPartnerPageImage } from "./EntityPartnerPageImage.svg";
+export { default as EntityPaymentDetailsPageImage } from "./EntityPaymentDetailsPageImage.svg";
+
