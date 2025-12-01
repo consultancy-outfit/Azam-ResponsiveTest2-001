@@ -42,7 +42,7 @@ const RegistrationScopePage = () => {
       data: true,
     },
     {
-      title: "Cosmonyx clear junction",
+      title: "clear junction",
       image: logoimage6,
       route: "/clear-junction-rest-api",
       data: true,
