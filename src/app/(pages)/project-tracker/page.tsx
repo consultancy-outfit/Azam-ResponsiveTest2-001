@@ -55,8 +55,6 @@ const ProjectTrackerPage = () => {
     cards={ScopeOfRegistrationPageData}
     backRoute={"/registration-scope"}
   />
-
-  
   );
 };
 
