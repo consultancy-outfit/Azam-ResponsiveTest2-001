@@ -43,6 +43,8 @@ const ScopeOfRegistrationPageData: CardItem[] = [
     image: img1ScopeOfRegistrationImage2,
     title: "End User Flow",
     data: true,
+
+
   },
 ];
 
@@ -53,6 +55,8 @@ const ProjectTrackerPage = () => {
     cards={ScopeOfRegistrationPageData}
     backRoute={"/registration-scope"}
   />
+
+  
   );
 };
 
