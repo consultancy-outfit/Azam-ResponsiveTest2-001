@@ -187,6 +187,7 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                     height={200}
                     style={{
                       width: "100%",
+                      minHeight: "200px",
                       maxWidth: "200px",
                       height: "auto",
                       objectFit: "contain",

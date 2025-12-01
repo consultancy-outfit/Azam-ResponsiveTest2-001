@@ -15,14 +15,11 @@ export { default as TestPageImage } from "./TestPageImage.svg";
 export { default as CrossSectorInspectionsImage } from "./CrossSectorInspectionsImage.svg";
 export { default as CareQualityCommissionCqcOverviewImage } from "./CareQualityCommissionCqcOverviewImage.svg";
 export { default as WithdrawalOfApplicationImage } from "./WithdrawalOfApplicationImage.svg";
-export { default as CardOneImage } from "./mainTestLogo.svg";
-export { default as CardTwoImage } from "./mainTestLogo.svg";
-export { default as CardThreeImage } from "./mainTestLogo.svg";
-export { default as CardFourImage } from "./mainTestLogo.svg";
-export { default as Card5Image } from "./mainTestLogo.svg";
-export { default as Card6Image } from "./mainTestLogo.svg";
-export { default as Card7Image } from "./mainTestLogo.svg";
-export { default as Card8Image } from "./mainTestLogo.svg";
+export { default as CardOneImage } from "./CardOneImage.svg";
+export { default as CardTwoImage } from "./CardTwoImage.svg";
+export { default as CardThreeImage } from "./CardThreeImage.svg";
+export { default as CardFourImage } from "./CardFourImage.svg";
+export { default as CardfiveImage } from "./CardfiveImage.svg";
 
 export { default as OpenPayd1Image } from "./OpenPayd1Image.svg";
 export { default as OpenPayd2Image } from "./OpenPayd2Image.svg";
@@ -260,6 +257,105 @@ export { default as fixdirection } from "./fixdirection.svg";
 export { default as endingsession } from "./endingSession.svg";
 export { default as endpoint } from "./fixendpoint.svg";
 export { default as fixConnectivity } from "./fixConnectivity.svg";
+export { default as Section } from "./Section.svg";
+export { default as orderTradeTransactionImg1 } from "./orderTradeTransactionImg1.svg";
+export { default as privateGetTrade } from "./privateGetTrade.svg";
+export { default as privateGetTransaction } from "./privateGetTransaction.svg";
+export { default as walletApi } from "./walletApi.svg";
+export { default as privateCreateWithdrawal } from "./privateCreateWithdrawal.svg";
+export { default as privateGetCurrencyNetwork } from "./privateGetCurrencyNetwork.svg";
+export { default as privateGetDepositAddress } from "./privateGetDepositAddress.svg";
+export { default as privateGetDepositHistory } from "./privateGetDepositHistory.svg";
+export { default as privateGetWithdrawalHistory } from "./privateGetWithdrawalHistory.svg";
+export { default as fiatWalletApi } from "./fiatWalletApi.svg";
+export { default as fiatWalletImg1 } from "./fiatWalletImg1.svg";
+export { default as fiatWalletImg2 } from "./fiatWalletImg2.svg";
+export { default as fiatWalletImg3 } from "./fiatWalletImg3.svg";
+export { default as fiatWalletImg4 } from "./fiatWalletImg4.svg";
+export { default as fiatWalletImg5 } from "./fiatWalletImg5.svg";
+export { default as fiatWalletImg6 } from "./fiatWalletImg6.svg";
+export { default as fiatWalletImg7 } from "./fiatWalletImg7.svg";
+export { default as stakingImg } from "./stakingImg.svg";
+export { default as stakingApiImg } from "./stakingApiImg.svg";
+export { default as stakingApiImg2 } from "./stakingApiImg2.svg";
+export { default as stakingApiImg3 } from "./stakingApiImg3.svg";
+export { default as stakingApiImg4 } from "./stakingApiImg4.svg";
+export { default as stakingApiImg5 } from "./stakingApiImg5.svg";
+export { default as stakingApiImg6 } from "./stakingApiImg6.svg";
+export { default as stakingApiImg7 } from "./stakingApiImg7.svg";
+export { default as stakingApiImg8 } from "./stakingApiImg8.svg";
+export { default as stakingApiImg9 } from "./stakingApiImg9.svg";
+export { default as stakingApiImg10 } from "./stakingApiImg10.svg";
+export { default as stakingApiImg11 } from "./stakingApiImg11.svg";
+export { default as websocketSubscriptions } from "./websocketSubscriptions.svg";
+export { default as websocketSubscriptions1 } from "./websocketSubscriptions1.svg";
+export { default as websocketSubscriptions2 } from "./websocketSubscriptions2.svg";
+export { default as websocketSubscriptions3 } from "./websocketSubscriptionsImg3.svg";
+export { default as websocketSubscriptions4 } from "./websocketSubscriptionsImg4.svg";
+export { default as websocketSubscriptions5 } from "./websocketSubscriptions5.svg";
+export { default as websocketSubscriptions6 } from "./websocketSubscriptions6.svg";
+export { default as websocketSubscriptions7 } from "./websocketSubscriptions7.svg";
+export { default as websocketSubscriptions8 } from "./websocketSubscriptions8.svg";
+export { default as websocketSubscriptions9 } from "./websocketSubscriptions9.svg";
+export { default as websocketSubscriptions10 } from "./websocketSubscriptions10.svg";
+export { default as websocketSubscriptions11 } from "./websocketSubscriptions11.svg";
+export { default as websocketSubscriptions12 } from "./websocketSubscriptions12.svg";
+export { default as websocketSubscriptions13 } from "./websocketSubscriptions13.svg";
+export { default as websocketSubscriptions14 } from "./websocketSubscriptions14.svg";
+export { default as websocketSubscriptions15 } from "./websocketSubscriptions15.svg";
+export { default as websocketSubscriptions16 } from "./websocketSubscriptions16.svg";
+export { default as websocketSubscriptions17 } from "./websocketSubscriptions17.svg";
+export { default as websocketSubscriptions18 } from "./websocketSubscriptions18.svg";
+export { default as websocketSubscriptions19 } from "./websocketSubscriptions19.svg";
+export { default as websocketSubscriptions20 } from "./websocketSubscriptions20.svg";
+export { default as websocketSubscriptions21 } from "./websocketSubscriptions21.svg";
+export { default as commonIssuesImg } from "./commonIssuesImg.svg";
+// export { default as fixApiSessionManagement} from "./fixSessionManagement.svg";
+// export { default as fixApiGenerate } from "./generateFixApi.svg"
+// export { default as RateLimit } from "./ratelimit.svg"
+// export { default as fixdirection } from "./fixdirection.svg"
+// export { default as endingsession } from "./endingSession.svg"
+// export { default as endpoint } from "./fixendpoint.svg"
+// export { default as fixConnectivity } from "./fixConnectivity.svg"
+export { default as cryptofixmessage } from "./cryptofixmessage.svg";
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+export { default as cryptofixmessag } from "./cryptoFixMessag.svg";
+export { default as standardTrailor } from "./standardTrailor.svg";
+export { default as logon } from "./logon.svg";
+export { default as logout } from "./logout.svg";
+export { default as heartbeat } from "./heartbeat.svg";
+export { default as testRequest } from "./testRequest.svg";
+export { default as resendRequest } from "./resendRequest.svg";
+export { default as case1 } from "./case1.svg";
+export { default as case2 } from "./case2.svg";
+export { default as case3 } from "./case3.svg";
+export { default as sequenceReset } from "./sequenceReset.svg";
+export { default as newordersingle } from "./newordersingle.svg";
+export { default as requiredField } from "./requiredField.svg";
+export { default as parameters } from "./parameters.svg";
+export { default as responseAttributes } from "./responseAttributes.svg";
+
+// @@@@@@@@@@@@@@@@@@@@@@@@
+export { default as ordercancelrejectmessage } from "./ordercancelrejectmessage.svg";
+export { default as requiredfieldmessage } from "./requiredfieldmessage.svg";
+export { default as responceattributes } from "./responceattributes.svg";
+export { default as ordercancelrequest } from "./ordercancelrequest.svg";
+export { default as ordermasscancelrequestmessage } from "./ordermasscancelrequestmessage.svg";
+export { default as ordermasscancelreportmessage } from "./ordermasscancelreportmessage.svg";
+export { default as massordermessage } from "./massordermessage.svg";
+export { default as executionreport } from "./executionreport.svg";
+export { default as exectypevalue } from "./exectypevalue.svg";
+export { default as orderstatusrequest } from "./orderstatusrequest.svg";
+export { default as requestattributemessage } from "./requestattributemessage.svg";
+export { default as unknoworder } from "./unknoworder.svg";
+export { default as marketdatarefresh } from "./marketdatarefresh.svg";
+export { default as marketdatareject } from "./marketdatareject.svg";
+export { default as securitydefinitionrequest } from "./securitydefinitionrequest.svg";
+export { default as snapshotrefresh } from "./snapshotrefresh.svg";
+export { default as securitylistrequest } from "./securitylistrequest.svg";
+export { default as securitylist } from "./securitylist.svg";
+export { default as businessmessagereject } from "./businessmessagereject.svg";
 
 export { default as img1CryptoImagev1 } from "./img1CryptoImagev1.svg";
 export { default as img2CryptoImagev1 } from "./img2CryptoImagev1.svg";

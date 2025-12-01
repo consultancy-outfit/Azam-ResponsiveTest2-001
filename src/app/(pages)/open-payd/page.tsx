@@ -1,8 +1,4 @@
 import {
-  CardOneImage,
-  CardTwoImage,
-  CardThreeImage,
-  CardFourImage,
   OpenPayd1Image,
   OpenPayd12Image,
   OpenPayd11Image,
@@ -101,7 +97,7 @@ const OpenPaydPage = () => {
     <CommonCardPage
       pageTitle="OpenPayd(API Reference)"
       cards={cards}
-      backRoute={"/"}
+      backRoute={"/registration-scope"}
     />
   );
 };
