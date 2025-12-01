@@ -36,14 +36,14 @@ const areas = [
   {
     alt: "Status of Order_Get Status by orderReference_Response_Attributes",
     title: "Status of Order_Get Status by orderReference_Response_Attributes",
-    href: "status-of-order-get-status-by-order-reference-response-attributes",
+    href: "status-of-order-get-status-by-orderreference-response-attributes",
     coords: "53,2475,837,2618",
     shape: "rect",
   },
   {
     alt: "Status of Order_Get Status by clientOrder_Response_Attributes",
     title: "Status of Order_Get Status by clientOrder_Response_Attributes",
-    href: "status-of-order-get-status-by-client-order-response-attributes",
+    href: "status-of-order-get-status-by-clientorder-response-attributes",
     coords: "46,4163,811,4323",
     shape: "rect",
   },

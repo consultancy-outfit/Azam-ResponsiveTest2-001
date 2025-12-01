@@ -7,7 +7,7 @@ const areas = [
     alt: "Entity Payment Detail/Bank Transfer Swift/Example Bank Transfer Swift payment detail Entity",
     title:
       "Entity Payment Detail/Bank Transfer Swift/Example Bank Transfer Swift payment detail Entity",
-    href: "/entity-payment-detail-bank-transfer-swift-example-bank-transfer-swift-payment-detail-entity",
+    href: "/entity-payment-detailbank-transfer-swiftexample-bank-transfer-swift-payment-detail-entity",
     coords: "21,102,391,186",
     shape: "rect",
     target: "_self",
@@ -16,7 +16,7 @@ const areas = [
     alt: "Entity Payment Detail/Bank Transfer Eu/Example Bank Transfer Eu payment detail Entity",
     title:
       "Entity Payment Detail/Bank Transfer Eu/Example Bank Transfer Eu payment detail Entity",
-    href: "/entity-payment-detail-bank-transfer-eu-example-bank-transfer-eu-payment-detail-entity",
+    href: "/entity-payment-detailbank-transfer-euexample-bank-transfer-eu-payment-detail-entity",
     coords: "28,1239,386,1374",
     shape: "rect",
     target: "_self",
@@ -25,7 +25,7 @@ const areas = [
     alt: "Entity Payment Detail/Internal Payment/Example Internal Payment detail Entity",
     title:
       "Entity Payment Detail/Internal Payment/Example Internal Payment detail Entity",
-    href: "/entity-payment-detail-internal-payment-example-internal-payment-detail-entity",
+    href: "/entity-payment-detailbank-transfer-sepa-instexample-bank-transfer-sepa-inst-payment-detail-entity",
     coords: "35,1808,349,1955",
     shape: "rect",
     target: "_self",
@@ -34,16 +34,16 @@ const areas = [
     alt: "Entity Payment Detail/Bank Transfer Sepa Inst/Example Bank Transfer Sepa Inst payment detail Entity",
     title:
       "Entity Payment Detail/Bank Transfer Sepa Inst/Example Bank Transfer Sepa Inst payment detail Entity",
-    href: "/entity-payment-detail-bank-transfer-sepa-inst-example-bank-transfer-sepa-inst-payment-detail-entity",
+    href: "/entity-payment-detailbank-transfer-sepa-instexample-bank-transfer-sepa-inst-payment-detail-entity",
     coords: "35,2387,441,2541",
     shape: "rect",
     target: "_self",
   },
   {
-    alt: "Entity Payment Detail/Bank Transfer FasterPayments/Example Bank Transfer Uk (FasterPayments) payment detail Entity",
+    alt: "Entity Payment Detail / Bank Transfer FasterPayments / Example Bank Transfer Uk (FasterPayments) payment detail Entity",
     title:
-      "Entity Payment Detail/Bank Transfer FasterPayments/Example Bank Transfer Uk (FasterPayments) payment detail Entity",
-    href: "/entity-payment-detail-bank-transfer-faster-payments-example-bank-transfer-uk-faster-payments-payment-detail-entity",
+      "Entity Payment Detail / Bank Transfer FasterPayments / Example Bank Transfer Uk (FasterPayments) payment detail Entity",
+    href: "/entity-payment-detailbank-transfer-fasterpaymentsexample-bank-transfer-uk-fasterpayments-payment-detail-entity",
     coords: "42,2934,537,3110",
     shape: "rect",
     target: "_self",
@@ -52,7 +52,7 @@ const areas = [
     alt: "Entity Payment Detail/Bank Transfer CHAPS/Example Bank Transfer Uk (CHAPS) payment detail Entity",
     title:
       "Entity Payment Detail/Bank Transfer CHAPS/Example Bank Transfer Uk (CHAPS) payment detail Entity",
-    href: "/entity-payment-detail-bank-transfer-chaps-example-bank-transfer-uk-chaps-payment-detail-entity",
+    href: "/entity-payment-detailbank-transfer-chapsexample-bank-transfer-uk-chaps-payment-detail-entity",
     coords: "33,3508,425,3740",
     shape: "rect",
     target: "_self",
@@ -61,7 +61,7 @@ const areas = [
     alt: "Entity Payment Detail/Bank Transfer CHAPS Cross Scheme/Example Bank Transfer Uk (CHAPS Cross Scheme) payment detail Entity",
     title:
       "Entity Payment Detail/Bank Transfer CHAPS Cross Scheme/Example Bank Transfer Uk (CHAPS Cross Scheme) payment detail Entity",
-    href: "/entity-payment-detail-bank-transfer-chaps-cross-scheme-example-bank-transfer-uk-chaps-cross-scheme-payment-detail-entity",
+    href: "/entity-payment-detailbank-transfer-chaps-cross-schemeexample-bank-transfer-uk-chaps-cross-scheme-payment-detail-entity",
     coords: "28,4086,621,4373",
     shape: "rect",
     target: "_self",
