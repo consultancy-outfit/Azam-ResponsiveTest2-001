@@ -3,7 +3,8 @@ import {
   CardTwoImage,
   CardThreeImage,
   CardFourImage,
-  CardfiveImage
+  CardfiveImage,
+  logoimage6
 } from "@/assets";
 import CommonCardPage from "@/components/common-card-page";
 import React from "react";
@@ -38,6 +39,12 @@ const RegistrationScopePage = () => {
       title: "Open Payd",
       image: CardfiveImage,
       route: "/open-payd",
+      data: true,
+    },
+    {
+      title: "Cosmonyx clear junction",
+      image: logoimage6,
+      route: "/clear-junction-rest-api",
       data: true,
     },
   ];

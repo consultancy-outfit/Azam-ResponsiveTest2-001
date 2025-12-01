@@ -551,4 +551,6 @@ export { default as TransactionActionsPageImage } from "./TransactionActionsPage
 export { default as CheckRequisitePageImage } from "./CheckRequisitePageImage.svg";
 export { default as EntityPartnerPageImage } from "./EntityPartnerPageImage.svg";
 export { default as EntityPaymentDetailsPageImage } from "./EntityPaymentDetailsPageImage.svg";
+export { default as logoimage6 } from "./logoimage6.svg";
+
 
