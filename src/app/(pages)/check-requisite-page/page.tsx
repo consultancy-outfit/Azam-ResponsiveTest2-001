@@ -32,7 +32,7 @@ const areas = [
   {
     alt: "Check SEPA SCT/Inst IBAN",
     title: "Check SEPA SCT/Inst IBAN",
-    href: "/check-sepa-sct-inst-iban",
+    href: "/check-sepa-sctinst-iban",
     coords: "30,4068,659,4321",
     shape: "rect",
     target: "_self",
