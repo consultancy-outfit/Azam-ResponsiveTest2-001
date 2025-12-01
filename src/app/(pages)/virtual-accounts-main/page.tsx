@@ -220,19 +220,11 @@ const ImageMap = () => {
             key={area.id}
             sx={{
               ...calculateStyle(area),
-              "&:hover": {
-                backgroundColor: "rgba(255, 255, 255, 0.2)",
-                border: "2px solid white",
-                opacity: 0.2,
-              },
               boxSizing: "border-box",
               transition: "all 0.2s ease-in-out",
               border: "2px solid transparent",
               borderRadius: "2px",
-              ...(area.status === "active" && {
-                border: "2px solid #1976d2",
-                backgroundColor: "rgba(25, 118, 210, 0.1)",
-              }),
+             
             }}
             onClick={() => handleAreaClick(area)}
             title={area.title || `Section ${area.id}`}
