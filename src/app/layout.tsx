@@ -38,11 +38,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cosmonyx Insights", 
     description: "Powering the Future of Digital Finance",
-    url: `Cosmonyx.netlify.app`,
+    url: `https://cosmonyx.vercel.app`,
     type: "website",
     images: [
       {
-        url: `https://Cosmonyx.netlify.app/og.png`,
+        url: `https://cosmonyx.vercel.app/og.png`,
         type: "image/png",
         width: 1200,
         height: 630,
