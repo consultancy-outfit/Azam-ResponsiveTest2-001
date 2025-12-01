@@ -144,7 +144,7 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                   height: "100%",
                   borderRadius: 4,
                   textAlign: "center",
-                  boxShadow: "2px 2px 10px rgb(0 0 0 / 35%)",
+                  boxShadow: "2px 2px 35px rgb(0 0 0 / 15%)",
                   p: 4,
                   display: "flex",
                   flexDirection: "column",
@@ -157,8 +157,8 @@ const CommonCardPage: React.FC<CommonCardPageProps> = ({
                   "&:hover": {
                     transform: card.route ? "scale(1.02)" : "none",
                     boxShadow: card.route
-                      ? "2px 2px 15px rgb(0 0 0 / 45%)"
-                      : "2px 2px 10px rgb(0 0 0 / 35%)",
+                      ? "2px 2px 35px rgb(0 0 0 / 20%)"
+                      : "2px 2px 35px rgb(0 0 0 / 20%)",
                   },
                 }}
               >
