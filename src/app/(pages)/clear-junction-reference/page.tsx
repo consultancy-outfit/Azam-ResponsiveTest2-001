@@ -22,13 +22,13 @@ const ClearJunctionReferencePage = () => {
       title: "Payout",
       data: true,
       image: PayoutImage,
-      route: "/payout",
+      route: "/payout-main",
     },
     {
       title: "Payin",
       data: true,
       image: PayinImage,
-      route: "/payin",
+      route: "/Payin-main",
     },
     {
       title: "Refund",
@@ -46,7 +46,7 @@ const ClearJunctionReferencePage = () => {
       title: "Virtual Accounts",
       data: true,
       image: VirtualAccountsImage,
-      route: "/virtual-accounts",
+      route: "/virtual-accounts-main",
     },
     {
       title: "Client Money Account E-Wallet",
