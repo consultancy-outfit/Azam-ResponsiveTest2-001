@@ -59,7 +59,7 @@ const ImageMap = () => {
       width: 387.852,
       height: 121.094,
       title: "",
-      link: "/clear-junction-reference",
+      // link: "/clear-junction-reference",
       status: "coming soon",
     },
     {
@@ -222,12 +222,10 @@ const ImageMap = () => {
               ...calculateStyle(area),
               boxSizing: "border-box",
               transition: "all 0.2s ease-in-out",
-              border: "2px solid transparent",
-              borderRadius: "2px",
-             
-            }}
+             }}
             onClick={() => handleAreaClick(area)}
             title={area.title || `Section ${area.id}`}
+            
           />
         ))}
       </Box>

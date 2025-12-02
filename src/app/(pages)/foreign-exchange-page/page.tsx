@@ -47,14 +47,14 @@ const areas = [
   {
     alt: "Foreign Exchange_Instant FX_Get Status by orderReference",
     title: "Foreign Exchange_Instant FX_Get Status by orderReference",
-    href: "/foreign-exchange-instant-fx-get-status-by-order-reference",
+    href: "/foreign-exchange-instant-fx-get-status-by-orderreference",
     coords: "4,3559,535,3722",
     shape: "rect",
   },
   {
     alt: "Foreign Exchange_Instant FX_Get Status by clientOrder",
     title: "Foreign Exchange_Instant FX_Get Status by clientOrder",
-    href: "/foreign-exchange-instant-fx-get-status-by-client-order",
+    href: "/foreign-exchange-instant-fx-get-status-by-clientorder",
     coords: "5,4205,477,4409",
     shape: "rect",
   },

@@ -6,7 +6,7 @@ const areas = [
   {
     alt: "TransactionReport_ Request_Attributes",
     title: "TransactionReport_ Request_Attributes",
-    href: "/transaction-report-request-attributes",
+    href: "/transactionreport-request-attributes",
     coords: "35,154,439,226",
     shape: "rect",
     target: "_self",
@@ -32,7 +32,7 @@ const areas = [
   {
     alt: "TransactionReport_ Response _Attributes",
     title: "TransactionReport_ Response _Attributes",
-    href: "/transaction-report-response-attributes",
+    href: "/transactionreport-response-attributes",
     coords: "40,423,521,528",
     shape: "rect",
     target: "_self",

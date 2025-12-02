@@ -74,7 +74,7 @@ const areas = [
   {
     alt: "Entity Partner_ Individual InternalPayment Entity",
     title: "Entity Partner_ Individual InternalPayment Entity",
-    href: "/entity-partner-individual-internal-payment-entity",
+    href: "/entity-partner-individual-internalpayment-entity",
     coords: "30,2455,724,2652",
     shape: "rect",
     target: "_self",

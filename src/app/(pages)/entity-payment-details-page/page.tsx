@@ -79,7 +79,7 @@ const areas = [
     alt: "Entity Payment Detail/Bank Transfer BACS/Example Bank Transfer Uk (BACS) payment detail Entity",
     title:
       "Entity Payment Detail/Bank Transfer BACS/Example Bank Transfer Uk (BACS) payment detail Entity",
-    href: "/entity-payment-detail-bank-transfer-bacs-example-bank-transfer-uk-bacs-payment-detail-entity",
+    href: "/entity-payment-detailbank-transfer-bacsexample-bank-transfer-uk-bacs-payment-detail-entity",
     coords: "37,4663,605,4963",
     shape: "rect",
     target: "_self",
@@ -88,7 +88,7 @@ const areas = [
     alt: "Entity Payment Detail/Bank Transfer Uk/Example Bank Transfer Uk payment detail Entity",
     title:
       "Entity Payment Detail/Bank Transfer Uk/Example Bank Transfer Uk payment detail Entity",
-    href: "/entity-payment-detail-bank-transfer-uk-example-bank-transfer-uk-payment-detail-entity",
+    href: "/entity-payment-detailbank-transfer-ukexample-bank-transfer-uk-payment-detail-entity",
     coords: "26,5232,479,5605",
     shape: "rect",
     target: "_self",
